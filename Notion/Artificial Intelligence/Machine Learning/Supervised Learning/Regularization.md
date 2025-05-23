@@ -1,6 +1,6 @@
   
 [[Ridge]]
-  
+[[Lasso]]  
 
 Regularization in machine learning is a technique used to **prevent overfitting**, which happens when a model learns not only the underlying patterns in the training data but also the noise—essentially, it memorizes the data instead of generalizing from it.
 

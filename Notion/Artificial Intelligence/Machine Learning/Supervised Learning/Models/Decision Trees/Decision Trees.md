@@ -3,6 +3,7 @@
 [[AdaBoost]]
 
 [[Gradient Boosting]]
+[[XGBoost]]
 
   
 

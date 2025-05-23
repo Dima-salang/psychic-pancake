@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Ridge.md",
+                "file": "XGBoost.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Ridge"
+              "title": "XGBoost"
             }
           }
         ]
@@ -183,8 +183,15 @@
   },
   "active": "22f310198f12f5fa",
   "lastOpenFiles": [
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Regularization.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Decision Trees.md",
+    "XGBoost.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Random Forest.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/AdaBoost.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Gradient Boosting.md",
     "Notion/Artificial Intelligence/Data Handling/Data Structures.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Regularization.md",
+    "Lasso.md",
+    "Ridge.md",
     "Notion/Artificial Intelligence/Data Handling/Data Handling 2.md",
     "Notion/Artificial Intelligence/Data Handling/EDA.md",
     "Notion/College Management/Extra Activities/GOOGLE DATA ANALYTICS PROFESSIONAL CERTIFICATE/Readings/You Are Not as Good at Kissing as You Think. But You Are Better at Dancing.md",
@@ -210,7 +217,6 @@
     "Chapter_3.pdf",
     "Chapter_2.pdf",
     "Chapter_1.pdf",
-    "Ridge.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Underfitting.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Overfitting and Underfitting.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Optimization.md",
@@ -218,12 +224,6 @@
     "Notion/Artificial Intelligence/Machine Learning/Machine Learning.md",
     "Notion/College Management/Sophomore Courses/AI-1.md",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/IT Defense - Cybersecurity/Security in the Organization.md",
-    "Notion/College Management/Extra Activities/Computer Security Principles/Security Technologies/Encryption.md",
-    "Notion/College Management/Extra Activities/Computer Security Principles/Computer Security Principles.md",
-    "Notion/College Management/Extra Activities/Computer Security Principles/Overview.md",
-    "Notion/Artificial Intelligence/Probability/Basics.md",
-    "Notion/Artificial Intelligence/Statistics/Estimates of Location.md",
-    "Notion/Artificial Intelligence/Statistics/Statistics.md",
     "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/System Administration/Software Services",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Connecting to the Internet",
