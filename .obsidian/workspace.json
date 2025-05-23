@@ -11,15 +11,14 @@
             "id": "22f310198f12f5fa",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": "Notion/College Management/Extra Activities/Practical Statistics for Data Scientists/Readings/General Magic the Movie.md",
-                "bFile": "Notion/College Management/Extra Activities/Practical Statistics for Data Scientists/Readings/General Magic the Movie.md",
-                "aRef": "HEAD",
-                "bRef": ""
+                "file": "Ridge.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: General Magic the Movie"
+              "icon": "lucide-file",
+              "title": "Ridge"
             }
           }
         ]
@@ -167,7 +166,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 816.5
+    "width": 369.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -184,6 +183,17 @@
   },
   "active": "22f310198f12f5fa",
   "lastOpenFiles": [
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Regularization.md",
+    "Notion/Artificial Intelligence/Data Handling/Data Structures.md",
+    "Notion/Artificial Intelligence/Data Handling/Data Handling 2.md",
+    "Notion/Artificial Intelligence/Data Handling/EDA.md",
+    "Notion/College Management/Extra Activities/GOOGLE DATA ANALYTICS PROFESSIONAL CERTIFICATE/Readings/You Are Not as Good at Kissing as You Think. But You Are Better at Dancing.md",
+    "Notion/College Management/Extra Activities/Cyber Security/Notes/TryHackMe Jr. Pentesting/TryHackMe Jr. Pentesting.md",
+    "Notion/College Management/Extra Activities/Deep Learning with Python/Notes/Notes.md",
+    "Notion/College Management/Sophomore Courses/Data Warehousing and Mining/Basic Data Warehousing and Architectures/Basic Data Warehousing and Architectures.md",
+    "Chapter_1.pdf.md",
+    "Notion/College Management/Extra Activities/Deep Learning with Python/Notes/Chapter 1- Limits.md",
+    "Notion/College Management/Extra Activities/IBM DATA SCIENCE/Notes/Chapter 1- DATA SCIENCE OVERVIEW.md",
     "Notion/Artificial Intelligence/Artificial Intelligence.md",
     "Untitled 39.png",
     "Untitled 3 15.png",
@@ -201,7 +211,6 @@
     "Chapter_2.pdf",
     "Chapter_1.pdf",
     "Ridge.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Regularization.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Underfitting.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Overfitting and Underfitting.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Optimization.md",
@@ -215,15 +224,6 @@
     "Notion/Artificial Intelligence/Probability/Basics.md",
     "Notion/Artificial Intelligence/Statistics/Estimates of Location.md",
     "Notion/Artificial Intelligence/Statistics/Statistics.md",
-    "Welcome.md",
-    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages/Week 1.md",
-    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages/Untitled 2.md",
-    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages/Untitled.md",
-    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages/Pages.md",
-    "Notion/College Management/Sophomore Courses/Life and Works of Rizal/FA1.1/Laurel Trials of the Rizal Bill.md",
-    "Notion/College Management/Sophomore Courses/Life and Works of Rizal/FA1.1/Constantino and Catholic Hierarchy.md",
-    "Notion/College Management/Sophomore Courses/Human-Computer Interaction (HCI)/Coursera CalArts UI-UX Specialization/Module 1.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Gradient Boosting.md",
     "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/System Administration/Software Services",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Connecting to the Internet",
