@@ -1,0 +1,233 @@
+{
+  "main": {
+    "id": "c02d3bbdf65fe7ac",
+    "type": "split",
+    "children": [
+      {
+        "id": "53ce9d70fd988c94",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "22f310198f12f5fa",
+            "type": "leaf",
+            "state": {
+              "type": "split-diff-view",
+              "state": {
+                "aFile": "Notion/College Management/Extra Activities/Practical Statistics for Data Scientists/Readings/General Magic the Movie.md",
+                "bFile": "Notion/College Management/Extra Activities/Practical Statistics for Data Scientists/Readings/General Magic the Movie.md",
+                "aRef": "HEAD",
+                "bRef": ""
+              },
+              "icon": "diff",
+              "title": "Diff: General Magic the Movie"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bbe100cf7e5612ae",
+    "type": "split",
+    "children": [
+      {
+        "id": "f07d4ced17481d83",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "48533c581a16d100",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byModifiedTime",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "2d2a54a0ca2fea2f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "5ce573e4294eee4f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "07d0247339a5e8b4",
+    "type": "split",
+    "children": [
+      {
+        "id": "62b56fc328478a92",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f36b94bb32607b83",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Welcome"
+            }
+          },
+          {
+            "id": "7569c1f314dd3c69",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Welcome"
+            }
+          },
+          {
+            "id": "1d819814b66c0c75",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "6ef4d59a780bad3a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Welcome"
+            }
+          },
+          {
+            "id": "cdbfeea6482b4413",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 816.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-importer:Open Importer": false
+    }
+  },
+  "active": "22f310198f12f5fa",
+  "lastOpenFiles": [
+    "Notion/Artificial Intelligence/Artificial Intelligence.md",
+    "Untitled 39.png",
+    "Untitled 3 15.png",
+    "Untitled 7 6.png",
+    "Untitled 1 18.png",
+    "Untitled 1 15.png",
+    "Untitled 2 9.png",
+    "image 3 6.png",
+    "image 2 6.png",
+    "image 1 8.png",
+    "image 11.png",
+    "Chapter_5.pdf",
+    "Chapter_4.pdf",
+    "Chapter_3.pdf",
+    "Chapter_2.pdf",
+    "Chapter_1.pdf",
+    "Ridge.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Regularization.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Underfitting.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Overfitting and Underfitting.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Optimization.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Supervised Learning.md",
+    "Notion/Artificial Intelligence/Machine Learning/Machine Learning.md",
+    "Notion/College Management/Sophomore Courses/AI-1.md",
+    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/IT Defense - Cybersecurity/Security in the Organization.md",
+    "Notion/College Management/Extra Activities/Computer Security Principles/Security Technologies/Encryption.md",
+    "Notion/College Management/Extra Activities/Computer Security Principles/Computer Security Principles.md",
+    "Notion/College Management/Extra Activities/Computer Security Principles/Overview.md",
+    "Notion/Artificial Intelligence/Probability/Basics.md",
+    "Notion/Artificial Intelligence/Statistics/Estimates of Location.md",
+    "Notion/Artificial Intelligence/Statistics/Statistics.md",
+    "Welcome.md",
+    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages/Week 1.md",
+    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages/Untitled 2.md",
+    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages/Untitled.md",
+    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages/Pages.md",
+    "Notion/College Management/Sophomore Courses/Life and Works of Rizal/FA1.1/Laurel Trials of the Rizal Bill.md",
+    "Notion/College Management/Sophomore Courses/Life and Works of Rizal/FA1.1/Constantino and Catholic Hierarchy.md",
+    "Notion/College Management/Sophomore Courses/Human-Computer Interaction (HCI)/Coursera CalArts UI-UX Specialization/Module 1.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Gradient Boosting.md",
+    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages",
+    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/System Administration/Software Services",
+    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Connecting to the Internet",
+    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Network Services",
+    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Transport Layer"
+  ]
+}

@@ -1,0 +1,3 @@
+[[First Principles Thinking]]
+
+[[Inversion]]
