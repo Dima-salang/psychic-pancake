@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "XGBoost.md",
+                "file": "Numpy Functions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "XGBoost"
+              "title": "Numpy Functions"
             }
           }
         ]
@@ -183,8 +183,14 @@
   },
   "active": "22f310198f12f5fa",
   "lastOpenFiles": [
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Decision Trees.md",
+    "Notion/Artificial Intelligence/Linear Algebra/Linear Algebra.md",
+    "Numpy Functions.md",
+    "Notion/Artificial Intelligence/Linear Algebra/Basics.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Optimization.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Overfitting and Underfitting.md",
+    "Notion/Artificial Intelligence/Statistics/Statistics.md",
     "XGBoost.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Decision Trees.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Random Forest.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/AdaBoost.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Gradient Boosting.md",
@@ -218,12 +224,6 @@
     "Chapter_2.pdf",
     "Chapter_1.pdf",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Underfitting.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Overfitting and Underfitting.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Optimization.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Supervised Learning.md",
-    "Notion/Artificial Intelligence/Machine Learning/Machine Learning.md",
-    "Notion/College Management/Sophomore Courses/AI-1.md",
-    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/IT Defense - Cybersecurity/Security in the Organization.md",
     "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/System Administration/Software Services",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Connecting to the Internet",

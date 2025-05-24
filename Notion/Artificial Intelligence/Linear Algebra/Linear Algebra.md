@@ -1,1 +1,4 @@
 [[Basics]]
+
+[[Numpy Functions]]
+
