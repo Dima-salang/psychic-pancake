@@ -317,7 +317,6 @@ a = \phi(z)
 $$
 
 So when you see:
-
 $$
 \text{Layer}(x) = \phi(xW + b)
 $$
