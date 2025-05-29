@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Numpy Functions.md",
+                "file": "Lasso.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Numpy Functions"
+              "title": "Lasso"
+            }
+          },
+          {
+            "id": "308fc8525d74aea0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Neural Net Foundations"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -181,33 +196,35 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "22f310198f12f5fa",
+  "active": "308fc8525d74aea0",
   "lastOpenFiles": [
-    "Notion/Artificial Intelligence/Linear Algebra/Linear Algebra.md",
+    "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
+    "Notion/Artificial Intelligence/Artificial Intelligence.md",
+    "Ridge.md",
+    "XGBoost.md",
+    "Lasso.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Regularization.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Supervised Learning.md",
     "Numpy Functions.md",
+    "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
+    "Notion/Artificial Intelligence/Deep Learning Study",
+    "Notion/College Management/Extra Activities/Grokking Deep Learning/Notes/Deep Learning/Deep Learning.md",
+    "Notion/Artificial Intelligence/Linear Algebra/Linear Algebra.md",
     "Notion/Artificial Intelligence/Linear Algebra/Basics.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Optimization.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Overfitting and Underfitting.md",
     "Notion/Artificial Intelligence/Statistics/Statistics.md",
-    "XGBoost.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Decision Trees.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Random Forest.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/AdaBoost.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Gradient Boosting.md",
     "Notion/Artificial Intelligence/Data Handling/Data Structures.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Regularization.md",
-    "Lasso.md",
-    "Ridge.md",
     "Notion/Artificial Intelligence/Data Handling/Data Handling 2.md",
     "Notion/Artificial Intelligence/Data Handling/EDA.md",
     "Notion/College Management/Extra Activities/GOOGLE DATA ANALYTICS PROFESSIONAL CERTIFICATE/Readings/You Are Not as Good at Kissing as You Think. But You Are Better at Dancing.md",
     "Notion/College Management/Extra Activities/Cyber Security/Notes/TryHackMe Jr. Pentesting/TryHackMe Jr. Pentesting.md",
     "Notion/College Management/Extra Activities/Deep Learning with Python/Notes/Notes.md",
     "Notion/College Management/Sophomore Courses/Data Warehousing and Mining/Basic Data Warehousing and Architectures/Basic Data Warehousing and Architectures.md",
-    "Chapter_1.pdf.md",
-    "Notion/College Management/Extra Activities/Deep Learning with Python/Notes/Chapter 1- Limits.md",
-    "Notion/College Management/Extra Activities/IBM DATA SCIENCE/Notes/Chapter 1- DATA SCIENCE OVERVIEW.md",
-    "Notion/Artificial Intelligence/Artificial Intelligence.md",
     "Untitled 39.png",
     "Untitled 3 15.png",
     "Untitled 7 6.png",
@@ -223,11 +240,9 @@
     "Chapter_3.pdf",
     "Chapter_2.pdf",
     "Chapter_1.pdf",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Underfitting.md",
     "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/System Administration/Software Services",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Connecting to the Internet",
-    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Network Services",
-    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Transport Layer"
+    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Network Services"
   ]
 }

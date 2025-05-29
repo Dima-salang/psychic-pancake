@@ -12,7 +12,7 @@ Term: Freshman First Term
 
 [[Machine Learning]]
 
-  
+[[Deep Learning Study]]
 
   
 
