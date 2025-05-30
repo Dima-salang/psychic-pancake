@@ -971,6 +971,185 @@ where $\eta$ is the **learning rate**.
 
 Let me know where to go next, or if you’d like the full diagrammatic walkthrough.
 
+# Backprop Math
+Absolutely — this is one of the most fundamental and magical parts of how neural networks **learn**: through **backpropagation**. We'll now go through the **mathematics of backpropagation**, **intuitively and rigorously**, to help you internalize exactly *how* and *why* neural networks learn by updating their parameters based on error.
+
+---
+
+# 🧠 What Is Backpropagation?
+
+Backpropagation is **how neural networks learn**. It’s a method to compute the **gradient of the loss function** with respect to each **weight** and **bias** in the network, using the **chain rule of calculus**.
+
+You use this gradient to **update parameters** using gradient descent.
+
+---
+
+## ⚙️ Overview: Forward and Backward Pass
+
+### Forward Pass:
+
+$$
+x \xrightarrow[]{\text{Layer 1}} a^{[1]} \xrightarrow[]{\text{Layer 2}} a^{[2]} \xrightarrow[]{\dots} \hat{y}
+$$
+
+### Backward Pass:
+
+$$
+\frac{\partial \mathcal{L}}{\partial \hat{y}} \rightarrow \frac{\partial \mathcal{L}}{\partial W^{[2]}} \rightarrow \frac{\partial \mathcal{L}}{\partial W^{[1]}}
+$$
+
+We apply the **chain rule** from the output layer backward through each layer to compute gradients.
+
+---
+
+# 🔢 Let's Build the Math Step by Step
+
+Let’s assume a simple **2-layer neural network**:
+
+### Notation:
+
+* Input: $x \in \mathbb{R}^{n}$
+* Hidden layer: $h = \sigma(z^{[1]})$, where $z^{[1]} = W^{[1]} x + b^{[1]}$
+* Output: $\hat{y} = \sigma(z^{[2]})$, where $z^{[2]} = W^{[2]} h + b^{[2]}$
+* Loss: $\mathcal{L}(\hat{y}, y)$ (let’s say mean squared error: $\mathcal{L} = \frac{1}{2}(\hat{y} - y)^2$)
+
+---
+
+## 🔄 Step-by-Step Gradient Computation
+
+We'll compute gradients **layer by layer**, from output to input.
+
+---
+
+## 🎯 Step 1: Output Layer Gradients
+
+Let’s compute the gradient of the loss w\.r.t. output layer weights $W^{[2]}$.
+
+### Loss:
+
+$$
+\mathcal{L} = \frac{1}{2} (\hat{y} - y)^2
+$$
+
+We know:
+
+$$
+\hat{y} = \sigma(z^{[2]}) = \sigma(W^{[2]} h + b^{[2]})
+$$
+
+Using chain rule:
+
+$$
+\frac{\partial \mathcal{L}}{\partial W^{[2]}} = \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z^{[2]}} \cdot \frac{\partial z^{[2]}}{\partial W^{[2]}}
+$$
+
+Breaking it down:
+
+* $\frac{\partial \mathcal{L}}{\partial \hat{y}} = (\hat{y} - y)$
+* $\frac{\partial \hat{y}}{\partial z^{[2]}} = \sigma'(z^{[2]})$
+* $\frac{\partial z^{[2]}}{\partial W^{[2]}} = h$
+
+So:
+
+$$
+\frac{\partial \mathcal{L}}{\partial W^{[2]}} = (\hat{y} - y) \cdot \sigma'(z^{[2]}) \cdot h^T
+$$
+
+This gives us how much the **output weights** contribute to the error — and in which direction they should be changed.
+
+---
+
+## 🔁 Step 2: Backpropagate to Hidden Layer
+
+Now we want $\frac{\partial \mathcal{L}}{\partial W^{[1]}}$
+
+Again apply the chain rule:
+
+$$
+\frac{\partial \mathcal{L}}{\partial W^{[1]}} = \frac{\partial \mathcal{L}}{\partial z^{[2]}} \cdot \frac{\partial z^{[2]}}{\partial h} \cdot \frac{\partial h}{\partial z^{[1]}} \cdot \frac{\partial z^{[1]}}{\partial W^{[1]}}
+$$
+
+Where:
+
+* $\frac{\partial \mathcal{L}}{\partial z^{[2]}} = (\hat{y} - y) \cdot \sigma'(z^{[2]})$
+* $\frac{\partial z^{[2]}}{\partial h} = W^{[2]}$
+* $\frac{\partial h}{\partial z^{[1]}} = \sigma'(z^{[1]})$
+* $\frac{\partial z^{[1]}}{\partial W^{[1]}} = x$
+
+So putting it all together:
+
+$$
+\frac{\partial \mathcal{L}}{\partial W^{[1]}} = \left[ (\hat{y} - y) \cdot \sigma'(z^{[2]}) \cdot W^{[2]} \right] \cdot \sigma'(z^{[1]}) \cdot x^T
+$$
+
+This gives us the gradients for **hidden layer weights** — and again, tells us how much error flowed back and how to fix those weights.
+
+---
+
+# 🎨 Summary Diagram
+
+```
+x ───► [ W1, b1 ] ──► z1 ─► σ ─► h ───► [ W2, b2 ] ──► z2 ─► σ ─► ŷ ─► L
+        ↑ gradient from loss       ↑ gradient from loss
+
+L → dL/dŷ → dL/dz2 → dL/dW2
+                        ↓
+              dL/dh → dL/dz1 → dL/dW1
+```
+
+---
+
+# ❓ Why Do We Backpropagate This Way?
+
+* The **loss is a scalar**, but we need to know how **every single weight** contributed to it.
+* We apply the **chain rule** backward, layer by layer, to trace how each weight affected the output.
+* This allows efficient calculation of **all gradients** with respect to all parameters.
+
+---
+
+# 🧠 Backprop in Vectorized Form
+
+Instead of doing these gradients one by one (slow), we vectorize everything using matrices:
+
+$$
+\delta^{[2]} = (\hat{y} - y) \cdot \sigma'(z^{[2]})
+$$
+
+$$
+\delta^{[1]} = (W^{[2]})^T \delta^{[2]} \cdot \sigma'(z^{[1]})
+$$
+
+Then we compute gradients:
+
+$$
+\frac{\partial \mathcal{L}}{\partial W^{[2]}} = \delta^{[2]} \cdot (a^{[1]})^T
+$$
+
+$$
+\frac{\partial \mathcal{L}}{\partial W^{[1]}} = \delta^{[1]} \cdot (x)^T
+$$
+
+Where $\delta$ is the error signal for each layer.
+
+---
+
+# ✅ Final Step: Update
+
+Now that you have the gradients, apply gradient descent:
+
+$$
+W^{[l]} := W^{[l]} - \eta \cdot \frac{\partial \mathcal{L}}{\partial W^{[l]}}
+$$
+
+---
+
+# 🧩 Want to See This in Code?
+
+Would you like to walk through this exact math with a **fully manual PyTorch training loop** on a tiny dataset — where we compute forward, backward, and update step-by-step?
+
+Or would you like to explore **how these gradients flow in deeper networks**, **with ReLU or other activations**, and even how **non-convexity** and **vanishing gradients** happen?
+
+Let me know what you'd like to dive into next — we’re deep in the neural trenches now!
 
 # Updating Parameters
 
