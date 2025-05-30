@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
+                "file": "Backpropagation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Neural Net Foundations"
+              "title": "Backpropagation"
             }
           }
         ]
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "07d0247339a5e8b4",
@@ -95,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Welcome.md",
+                "file": "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Welcome"
+              "title": "Backlinks for Neural Net Foundations"
             }
           },
           {
@@ -114,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Welcome.md",
+                "file": "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Welcome"
+              "title": "Outgoing links from Neural Net Foundations"
             }
           },
           {
@@ -143,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Welcome.md",
+                "file": "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Welcome"
+              "title": "Outline of Neural Net Foundations"
             }
           },
           {
@@ -184,7 +183,16 @@
   },
   "active": "308fc8525d74aea0",
   "lastOpenFiles": [
+    "Pasted image 20250530222914.png",
+    "Pasted image 20250530222854.png",
+    "Pasted image 20250530222833.png",
+    "Pasted image 20250530222746.png",
+    "Pasted image 20250530222733.png",
+    "Pasted image 20250530222303.png",
+    "Pasted image 20250530221521.png",
     "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
+    "Backpropagation.md",
+    "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
     "Notion/Artificial Intelligence/Artificial Intelligence.md",
     "Ridge.md",
     "XGBoost.md",
@@ -192,7 +200,6 @@
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Regularization.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Supervised Learning.md",
     "Numpy Functions.md",
-    "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
     "Notion/Artificial Intelligence/Deep Learning Study",
     "Notion/College Management/Extra Activities/Grokking Deep Learning/Notes/Deep Learning/Deep Learning.md",
     "Notion/Artificial Intelligence/Linear Algebra/Linear Algebra.md",
@@ -209,18 +216,10 @@
     "Notion/Artificial Intelligence/Data Handling/EDA.md",
     "Notion/College Management/Extra Activities/GOOGLE DATA ANALYTICS PROFESSIONAL CERTIFICATE/Readings/You Are Not as Good at Kissing as You Think. But You Are Better at Dancing.md",
     "Notion/College Management/Extra Activities/Cyber Security/Notes/TryHackMe Jr. Pentesting/TryHackMe Jr. Pentesting.md",
-    "Notion/College Management/Extra Activities/Deep Learning with Python/Notes/Notes.md",
-    "Notion/College Management/Sophomore Courses/Data Warehousing and Mining/Basic Data Warehousing and Architectures/Basic Data Warehousing and Architectures.md",
     "Untitled 39.png",
     "Untitled 3 15.png",
     "Untitled 7 6.png",
     "Untitled 1 18.png",
-    "Untitled 1 15.png",
-    "Untitled 2 9.png",
-    "image 3 6.png",
-    "image 2 6.png",
-    "image 1 8.png",
-    "image 11.png",
     "Chapter_5.pdf",
     "Chapter_4.pdf",
     "Chapter_3.pdf",
