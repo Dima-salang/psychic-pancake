@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Backpropagation.md",
+                "file": "Getting Matrix Dimensions Right.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Backpropagation"
+              "title": "Getting Matrix Dimensions Right"
             }
           }
         ]
@@ -166,7 +166,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 369.5
+    "width": 297.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -183,6 +183,10 @@
   },
   "active": "308fc8525d74aea0",
   "lastOpenFiles": [
+    "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
+    "Getting Matrix Dimensions Right.md",
+    "Notion/Artificial Intelligence/Artificial Intelligence.md",
+    "Backpropagation.md",
     "Pasted image 20250530222914.png",
     "Pasted image 20250530222854.png",
     "Pasted image 20250530222833.png",
@@ -190,10 +194,7 @@
     "Pasted image 20250530222733.png",
     "Pasted image 20250530222303.png",
     "Pasted image 20250530221521.png",
-    "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
-    "Backpropagation.md",
     "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
-    "Notion/Artificial Intelligence/Artificial Intelligence.md",
     "Ridge.md",
     "XGBoost.md",
     "Lasso.md",
@@ -219,7 +220,6 @@
     "Untitled 39.png",
     "Untitled 3 15.png",
     "Untitled 7 6.png",
-    "Untitled 1 18.png",
     "Chapter_5.pdf",
     "Chapter_4.pdf",
     "Chapter_3.pdf",
