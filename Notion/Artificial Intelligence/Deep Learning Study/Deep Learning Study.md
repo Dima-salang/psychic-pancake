@@ -6,3 +6,7 @@
 [[Why Deep Representations]]
 [[Forward and Backprop]]
 [[Hyperparameters and Parameters]]
+[[Training and Dev Sets]]
+[[Bias and Variance]]
+[[Basic Recipe]]
+
