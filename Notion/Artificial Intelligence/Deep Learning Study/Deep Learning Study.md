@@ -9,4 +9,9 @@
 [[Training and Dev Sets]]
 [[Bias and Variance]]
 [[Basic Recipe]]
+[[L2 Regularization]]
+[[Dropout Regularization]]
+[[Important Considerations]]
 
+[[Mini-batch GD]]
+[[Exponentially Weighted Moving Averages]]

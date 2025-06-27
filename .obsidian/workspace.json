@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Basic Recipe.md",
+                "file": "Exponentially Weighted Moving Averages.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Basic Recipe"
+              "title": "Exponentially Weighted Moving Averages"
             }
           }
         ]
@@ -184,10 +184,18 @@
   "active": "308fc8525d74aea0",
   "lastOpenFiles": [
     "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
+    "Mini-batch GD.md",
+    "Exponentially Weighted Moving Averages.md",
+    "Pasted image 20250627231924.png",
+    "Pasted image 20250627225911.png",
+    "Important Considerations.md",
+    "Dropout Regularization.md",
+    "L2 Regularization.md",
+    "Notion/Artificial Intelligence/Artificial Intelligence.md",
+    "Notion/College Management/Sophomore Courses/AI-1.md",
     "Basic Recipe.md",
     "Bias and Variance.md",
     "Training and Dev Sets.md",
-    "Notion/Artificial Intelligence/Artificial Intelligence.md",
     "Hyperparameters and Parameters.md",
     "Forward and Backprop.md",
     "Pasted image 20250611114826.png",
@@ -211,15 +219,6 @@
     "Notion/Artificial Intelligence/Deep Learning Study",
     "Notion/College Management/Extra Activities/Grokking Deep Learning/Notes/Deep Learning/Deep Learning.md",
     "Notion/Artificial Intelligence/Linear Algebra/Linear Algebra.md",
-    "Notion/Artificial Intelligence/Linear Algebra/Basics.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Optimization.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Overfitting and Underfitting.md",
-    "Notion/Artificial Intelligence/Statistics/Statistics.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Decision Trees.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/Random Forest.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Decision Trees/AdaBoost.md",
-    "Untitled 39.png",
-    "Untitled 3 15.png",
     "Chapter_5.pdf",
     "Chapter_4.pdf",
     "Chapter_3.pdf",
