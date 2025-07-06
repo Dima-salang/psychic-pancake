@@ -15,3 +15,7 @@
 
 [[Mini-batch GD]]
 [[Exponentially Weighted Moving Averages]]
+[[Momentum]]
+[[Adam]]
+[[Learning Rate Decay]]
+[[Local Optima]]

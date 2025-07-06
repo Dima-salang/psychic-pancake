@@ -72,13 +72,13 @@ pd.get_dummies(df['color'])  # ['red', 'blue', 'green'] → 3 new columns
 
 ### ✅ Encoding Best Practices
 
-|   |   |
-|---|---|
-|Rule|Why It Matters|
-|Use **Label Encoding** for **ordinal** data|Keeps natural order|
-|Use **One-Hot** for **nominal** data with low cardinality|Avoids false order|
-|Avoid OHE for **high-cardinality** features|Too many features, sparsity|
-|Use **target encoding with CV only**|Prevents target leakage|
+|                                                           |                             |
+| --------------------------------------------------------- | --------------------------- |
+| Rule                                                      | Why It Matters              |
+| Use **Label Encoding** for **ordinal** data               | Keeps natural order         |
+| Use **One-Hot** for **nominal** data with low cardinality | Avoids false order          |
+| Avoid OHE for **high-cardinality** features               | Too many features, sparsity |
+| Use **target encoding with CV only**                      | Prevents target leakage     |
 
 ---
 
@@ -156,13 +156,13 @@ X_scaled = scaler.fit_transform(X)
 
 ### ✅ Scaling Best Practices
 
-|   |   |   |
-|---|---|---|
-|Model Type|Needs Scaling?|Recommended Method|
-|Tree-based (RF, XGBoost)|❌ No|None|
-|KNN, SVM, k-Means|✅ Yes|Standard / MinMax|
-|Linear/Logistic Regression|✅ Yes|Standard / Robust|
-|Neural Networks|✅ Yes|MinMax / Standard|
+|                            |                |                    |
+| -------------------------- | -------------- | ------------------ |
+| Model Type                 | Needs Scaling? | Recommended Method |
+| Tree-based (RF, XGBoost)   | ❌ No           | None               |
+| KNN, SVM, k-Means          | ✅ Yes          | Standard / MinMax  |
+| Linear/Logistic Regression | ✅ Yes          | Standard / Robust  |
+| Neural Networks            | ✅ Yes          | MinMax / Standard  |
 
 ---
 
@@ -192,12 +192,12 @@ X_norm = normalizer.fit_transform(X)
 
 ## 🧠 Summary Table
 
-|   |   |   |
-|---|---|---|
-|Transformation|What It Does|When to Use|
-|**Encoding**|Converts categorical → numeric|When data has string categories|
-|**Scaling**|Rescales numeric values (feature-wise)|When magnitudes differ, for ML convergence|
-|**Normalization**|Scales vector to unit norm (row-wise)|When using cosine similarity or sparse vectors|
+|                   |                                        |                                                |
+| ----------------- | -------------------------------------- | ---------------------------------------------- |
+| Transformation    | What It Does                           | When to Use                                    |
+| **Encoding**      | Converts categorical → numeric         | When data has string categories                |
+| **Scaling**       | Rescales numeric values (feature-wise) | When magnitudes differ, for ML convergence     |
+| **Normalization** | Scales vector to unit norm (row-wise)  | When using cosine similarity or sparse vectors |
 
 ---
 
@@ -287,13 +287,13 @@ Examples: `zip codes`, `user IDs`, `product IDs`, `domains`
 
 Too many categories = bad for OHE. Use smarter techniques:
 
-|   |   |   |
-|---|---|---|
-|Encoding Technique|Best For|How It Works|
-|**Target Encoding**|Zip codes, IDs|Replace category with mean of target (e.g., avg income)|
-|**Frequency Encoding**|High-frequency categories|Replace category with count or frequency|
-|**Hashing Encoding**|Very high-cardinality|Uses hash functions to reduce dimensionality|
-|**Binary Encoding**|Mid-level cardinality|Converts category index to binary form|
+|                        |                           |                                                         |
+| ---------------------- | ------------------------- | ------------------------------------------------------- |
+| Encoding Technique     | Best For                  | How It Works                                            |
+| **Target Encoding**    | Zip codes, IDs            | Replace category with mean of target (e.g., avg income) |
+| **Frequency Encoding** | High-frequency categories | Replace category with count or frequency                |
+| **Hashing Encoding**   | Very high-cardinality     | Uses hash functions to reduce dimensionality            |
+| **Binary Encoding**    | Mid-level cardinality     | Converts category index to binary form                  |
 
 ### 🔐 Example: Encoding Zip Codes
 
@@ -318,26 +318,26 @@ df['zip_code_encoded'] = df['zip_code'].map(target_mean)
 
 These are two different **scaling methods** — used for **continuous numeric features**.
 
-|   |   |   |
-|---|---|---|
-|Aspect|**Standardization (Z-score)**|**Min-Max Scaling**|
-|**Formula**|z=x−μσz = \frac{x - \mu}{\sigma}|xscaled=x−min⁡max⁡−min⁡x_{\text{scaled}} = \frac{x - \min}{\max - \min}|
-|**Output Range**|Centered around 0 (mean = 0, std = 1)|Scales to [0, 1] (or custom range)|
-|**Effect of Outliers**|Less sensitive, but still influenced|Very sensitive to outliers|
-|**When to Use**|Most ML models; good default|When features are bounded (e.g., pixels 0–255)|
-|**Preserves Shape?**|Yes (distribution stays same, centered)|Yes (only rescaled, not changed)|
+|                        |                                         |                                                                         |
+| ---------------------- | --------------------------------------- | ----------------------------------------------------------------------- |
+| Aspect                 | **Standardization (Z-score)**           | **Min-Max Scaling**                                                     |
+| **Formula**            | z=x−μσz = \frac{x - \mu}{\sigma}        | xscaled=x−min⁡max⁡−min⁡x_{\text{scaled}} = \frac{x - \min}{\max - \min} |
+| **Output Range**       | Centered around 0 (mean = 0, std = 1)   | Scales to [0, 1] (or custom range)                                      |
+| **Effect of Outliers** | Less sensitive, but still influenced    | Very sensitive to outliers                                              |
+| **When to Use**        | Most ML models; good default            | When features are bounded (e.g., pixels 0–255)                          |
+| **Preserves Shape?**   | Yes (distribution stays same, centered) | Yes (only rescaled, not changed)                                        |
 
 ---
 
 ### 🔍 Key Use Cases
 
-|   |   |
-|---|---|
-|Use Case|Preferred Method|
-|Features with **outliers**|**RobustScaler** or Standardization|
-|Features with **bounded range** (e.g., images)|**Min-Max Scaling**|
-|When using **KNN, SVM, Logistic Regression**|**Standardization**|
-|Feeding into **Neural Networks**|Often **Min-Max** (or Standard)|
+|                                                |                                     |
+| ---------------------------------------------- | ----------------------------------- |
+| Use Case                                       | Preferred Method                    |
+| Features with **outliers**                     | **RobustScaler** or Standardization |
+| Features with **bounded range** (e.g., images) | **Min-Max Scaling**                 |
+| When using **KNN, SVM, Logistic Regression**   | **Standardization**                 |
+| Feeding into **Neural Networks**               | Often **Min-Max** (or Standard)     |
 
 ---
 
@@ -357,13 +357,13 @@ X_minmax = scaler_minmax.fit_transform(X)
 
 ## ✅ Summary: What Should You Use?
 
-|   |   |   |
-|---|---|---|
-|Feature Type|Recommended Encoding|Notes|
-|Ordinal Categorical|OrdinalEncoder / LabelEncoder|Preserve order|
-|Nominal, Low Cardinality|One-Hot Encoding|Use `drop_first=True` if needed|
-|High Cardinality Nominal|Target, Frequency, Hash, Binary|Use CV for target encoding|
-|Numeric Feature|StandardScaler or MinMaxScaler|Depends on distribution and algorithm|
+|                          |                                 |                                       |
+| ------------------------ | ------------------------------- | ------------------------------------- |
+| Feature Type             | Recommended Encoding            | Notes                                 |
+| Ordinal Categorical      | OrdinalEncoder / LabelEncoder   | Preserve order                        |
+| Nominal, Low Cardinality | One-Hot Encoding                | Use `drop_first=True` if needed       |
+| High Cardinality Nominal | Target, Frequency, Hash, Binary | Use CV for target encoding            |
+| Numeric Feature          | StandardScaler or MinMaxScaler  | Depends on distribution and algorithm |
 
 ---
 
