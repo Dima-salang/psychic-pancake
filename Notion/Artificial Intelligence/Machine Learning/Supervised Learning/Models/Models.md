@@ -6,9 +6,10 @@
 
 [[Decision Trees]]
 
-  
+[[Naive Bayes]]  
 
-  
+[[Gaussian Naive Bayes]]
+
 
   
 

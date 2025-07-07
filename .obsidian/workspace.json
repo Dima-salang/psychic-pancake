@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Z-Score Normalization or Standardization.md",
+                "file": "Gaussian Naive Bayes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Z-Score Normalization or Standardization"
+              "title": "Gaussian Naive Bayes"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "normalization",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 256.5004348754883
   },
   "right": {
     "id": "07d0247339a5e8b4",
@@ -183,34 +183,34 @@
   },
   "active": "308fc8525d74aea0",
   "lastOpenFiles": [
-    "Feature Scaling.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Models.md",
+    "Gaussian Naive Bayes.md",
+    "Naive Bayes.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Supervised Learning.md",
+    "Notion/Artificial Intelligence/Machine Learning/Machine Learning.md",
+    "PCA.md",
+    "Unsupervised Learning.md",
+    "K-Means.md",
+    "Notion/Artificial Intelligence/Artificial Intelligence.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/ML Pipeline/ML Pipeline.md",
     "Z-Score Normalization or Standardization.md",
+    "Feature Scaling.md",
     "Min-Max Normalization.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/ML Pipeline/Feature Engineering/Feature Engineering.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/ML Pipeline/Feature Engineering/Transformation.md",
     "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/IT Defense - Cybersecurity/System Hardening.md",
     "Notion/College Management/Freshman Courses/ITS131 - INFORMATION MANAGEMENT/Notes/Normalization.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/ML Pipeline/ML Pipeline.md",
     "Important Considerations.md",
     "Notion/Artificial Intelligence/Linear Algebra/Basics.md",
-    "K-Means.md",
-    "Unsupervised Learning.md",
-    "Notion/Artificial Intelligence/Machine Learning/Machine Learning.md",
     "Local Optima.md",
     "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
     "Learning Rate Decay.md",
     "Adam.md",
-    "Notion/Artificial Intelligence/Artificial Intelligence.md",
     "Notion/College Management/Freshman Courses/ITS131 - INFORMATION MANAGEMENT/Notes/Database Systems/Database Systems.md",
     "Momentum.md",
     "Exponentially Weighted Moving Averages.md",
-    "Notion/Artificial Intelligence/Machine Learning/Introduction.md",
-    "Mini-batch GD.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
-    "Dropout Regularization.md",
-    "L2 Regularization.md",
-    "Notion/College Management/Sophomore Courses/AI-1.md",
     "Pasted image 20250611114826.png",
     "Pasted image 20250530222914.png",
     "Pasted image 20250530222854.png",
