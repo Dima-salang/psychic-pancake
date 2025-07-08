@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Gaussian Naive Bayes.md",
+                "file": "Monte Carlo Methods.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Gaussian Naive Bayes"
+              "title": "Monte Carlo Methods"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 256.5004348754883
+    "width": 200
   },
   "right": {
     "id": "07d0247339a5e8b4",
@@ -183,8 +183,11 @@
   },
   "active": "308fc8525d74aea0",
   "lastOpenFiles": [
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Models.md",
+    "Notion/Artificial Intelligence/Statistics/Statistics.md",
+    "Monte Carlo Methods.md",
+    "Notion/Artificial Intelligence/Statistics/Structured Data.md",
     "Gaussian Naive Bayes.md",
+    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Models.md",
     "Naive Bayes.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Supervised Learning.md",
     "Notion/Artificial Intelligence/Machine Learning/Machine Learning.md",
@@ -206,9 +209,6 @@
     "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
     "Learning Rate Decay.md",
     "Adam.md",
-    "Notion/College Management/Freshman Courses/ITS131 - INFORMATION MANAGEMENT/Notes/Database Systems/Database Systems.md",
-    "Momentum.md",
-    "Exponentially Weighted Moving Averages.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
     "Pasted image 20250611114826.png",

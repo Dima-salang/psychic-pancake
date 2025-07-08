@@ -5,3 +5,5 @@
 [[Estimates of Variability]]
 
 [[Hypothesis Testing]]
+
+[[Monte Carlo Methods]]
