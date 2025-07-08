@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Monte Carlo Methods.md",
+                "file": "Notion/Artificial Intelligence/Statistics/Statistics.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Monte Carlo Methods"
+              "title": "Statistics"
             }
           }
         ]
@@ -183,7 +183,10 @@
   },
   "active": "308fc8525d74aea0",
   "lastOpenFiles": [
+    "Notion/Artificial Intelligence/Statistics/Hypothesis Testing.md",
     "Notion/Artificial Intelligence/Statistics/Statistics.md",
+    "Notion/Artificial Intelligence/Statistics/Estimates of Variability.md",
+    "Notion/Artificial Intelligence/Statistics/Estimates of Location.md",
     "Monte Carlo Methods.md",
     "Notion/Artificial Intelligence/Statistics/Structured Data.md",
     "Gaussian Naive Bayes.md",
@@ -206,9 +209,6 @@
     "Important Considerations.md",
     "Notion/Artificial Intelligence/Linear Algebra/Basics.md",
     "Local Optima.md",
-    "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
-    "Learning Rate Decay.md",
-    "Adam.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
     "Pasted image 20250611114826.png",
