@@ -19,3 +19,8 @@
 [[Adam]]
 [[Learning Rate Decay]]
 [[Local Optima]]
+
+
+
+[[Convolutional Networks]]
+

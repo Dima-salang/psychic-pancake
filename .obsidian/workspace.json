@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/Artificial Intelligence/Statistics/Statistics.md",
+                "file": "Transfer Learning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Statistics"
+              "title": "Transfer Learning"
             }
           }
         ]
@@ -183,8 +183,18 @@
   },
   "active": "308fc8525d74aea0",
   "lastOpenFiles": [
-    "Notion/Artificial Intelligence/Statistics/Hypothesis Testing.md",
+    "Convolutional Networks.md",
+    "Transfer Learning.md",
+    "Layers.md",
+    "Why Convolutions.md",
+    "Introduction to ConvNets.md",
+    "Notion/Artificial Intelligence/Machine Learning/Introduction.md",
+    "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
+    "Notion/Artificial Intelligence/Artificial Intelligence.md",
+    "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
+    "Notion/Artificial Intelligence/Classical AI/Classical AI.md",
     "Notion/Artificial Intelligence/Statistics/Statistics.md",
+    "Notion/Artificial Intelligence/Statistics/Hypothesis Testing.md",
     "Notion/Artificial Intelligence/Statistics/Estimates of Variability.md",
     "Notion/Artificial Intelligence/Statistics/Estimates of Location.md",
     "Monte Carlo Methods.md",
@@ -197,18 +207,8 @@
     "PCA.md",
     "Unsupervised Learning.md",
     "K-Means.md",
-    "Notion/Artificial Intelligence/Artificial Intelligence.md",
     "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/ML Pipeline/ML Pipeline.md",
     "Z-Score Normalization or Standardization.md",
-    "Feature Scaling.md",
-    "Min-Max Normalization.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/ML Pipeline/Feature Engineering/Feature Engineering.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/ML Pipeline/Feature Engineering/Transformation.md",
-    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/IT Defense - Cybersecurity/System Hardening.md",
-    "Notion/College Management/Freshman Courses/ITS131 - INFORMATION MANAGEMENT/Notes/Normalization.md",
-    "Important Considerations.md",
-    "Notion/Artificial Intelligence/Linear Algebra/Basics.md",
-    "Local Optima.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
     "Pasted image 20250611114826.png",
