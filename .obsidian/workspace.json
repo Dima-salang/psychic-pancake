@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Transfer Learning.md",
+                "file": "Parameter Learning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Transfer Learning"
+              "title": "Parameter Learning"
             }
           }
         ]
@@ -184,6 +184,8 @@
   "active": "308fc8525d74aea0",
   "lastOpenFiles": [
     "Convolutional Networks.md",
+    "Parameter Learning.md",
+    "CNN Architectures.md",
     "Transfer Learning.md",
     "Layers.md",
     "Why Convolutions.md",
@@ -207,8 +209,6 @@
     "PCA.md",
     "Unsupervised Learning.md",
     "K-Means.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/ML Pipeline/ML Pipeline.md",
-    "Z-Score Normalization or Standardization.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
     "Pasted image 20250611114826.png",

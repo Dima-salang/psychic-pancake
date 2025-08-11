@@ -1,4 +1,6 @@
 [[Introduction to ConvNets]]
 [[Why Convolutions]]
 [[Layers]]
+[[Parameter Learning]]
 [[Transfer Learning]]
+[[CNN Architectures]]
