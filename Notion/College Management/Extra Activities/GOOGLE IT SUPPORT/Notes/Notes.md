@@ -12,6 +12,6 @@ Tag your notes with course names and numbers.
 |[ ]|[[Troubleshooting]]|||September 10, 2023 11:01 PM|
 |[ ]|[[C1 GLOSSARY]]|||September 11, 2023 1:09 PM|
 |[ ]|[[Bits and Bytes]]|||September 11, 2023 1:38 PM|
-|[ ]|[[Operating Systems]]|||September 22, 2023 12:52 PM|
+|[ ]|[[Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Operating Systems/Operating Systems]]|||September 22, 2023 12:52 PM|
 |[ ]|[[System Administration]]|||October 1, 2023 12:18 PM|
 |[ ]|[[IT Defense - Cybersecurity]]|||October 6, 2023 8:18 PM|
