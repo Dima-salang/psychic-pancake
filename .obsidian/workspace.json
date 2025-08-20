@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Real-world OS Scheduling.md",
+                "file": "Deadlocks.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Real-world OS Scheduling"
+              "title": "Deadlocks"
             }
           }
         ]
@@ -185,6 +185,8 @@
   "active": "fbefa2d2ea7e5d6d",
   "lastOpenFiles": [
     "Notion/Operating Systems/Operating Systems.md",
+    "Deadlocks.md",
+    "Synchronization Tools.md",
     "Real-world OS Scheduling.md",
     "Real-Time CPU Scheduling.md",
     "CPU Scheduling.md",
@@ -214,8 +216,6 @@
     "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
     "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
     "Notion/Artificial Intelligence/Classical AI/Classical AI.md",
-    "Notion/Artificial Intelligence/Statistics/Statistics.md",
-    "Notion/Artificial Intelligence/Statistics/Hypothesis Testing.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
     "Pasted image 20250611114826.png",

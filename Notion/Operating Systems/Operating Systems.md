@@ -5,3 +5,5 @@
 [[CPU Scheduling]]
 [[Real-Time CPU Scheduling]]
 [[Real-world OS Scheduling]]
+[[Synchronization Tools]]
+[[Deadlocks]]
