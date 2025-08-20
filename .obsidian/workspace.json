@@ -4,33 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "53ce9d70fd988c94",
+        "id": "aed864297e91dfbb",
         "type": "tabs",
         "children": [
           {
-            "id": "308fc8525d74aea0",
+            "id": "fbefa2d2ea7e5d6d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Threads and Concurrency.md",
+                "file": "Real-world OS Scheduling.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Threads and Concurrency"
-            }
-          },
-          {
-            "id": "4afb938ec4779f01",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.9.10"
-              },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.9.10"
+              "title": "Real-world OS Scheduling"
             }
           }
         ]
@@ -194,12 +182,26 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "308fc8525d74aea0",
+  "active": "fbefa2d2ea7e5d6d",
   "lastOpenFiles": [
     "Notion/Operating Systems/Operating Systems.md",
+    "Real-world OS Scheduling.md",
+    "Real-Time CPU Scheduling.md",
+    "CPU Scheduling.md",
+    "Chapter1.md",
+    "Notion/College Management/Principles of Programming Languages/Programming Languages.md",
+    "Threads and Concurrency.md",
+    "Notion/College Management/Principles of Programming Languages",
+    "Notion/College Management/Homework/Test.md",
+    "Untitled 3.base",
+    "Untitled 2.base",
+    "Untitled 1.base",
+    "Notion/College Management/Extra Activities/Machine Learning and Deep Learning/Readings/Automatic Keyphrases Extraction from Document Using Neural Network  SpringerLink.md",
+    "Untitled.base",
+    "Notion/College Management/Extra Activities/Deep Learning with Python/Deep Learning with Python.md",
+    "Notion/Artificial Intelligence/Artificial Intelligence.md",
     "Interprocess Communication.md",
     "Operations on Processes.md",
-    "Threads and Concurrency.md",
     "Parameter Learning.md",
     "Notion/Operating Systems",
     "Convolutional Networks.md",
@@ -210,19 +212,10 @@
     "Introduction to ConvNets.md",
     "Notion/Artificial Intelligence/Machine Learning/Introduction.md",
     "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
-    "Notion/Artificial Intelligence/Artificial Intelligence.md",
     "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
     "Notion/Artificial Intelligence/Classical AI/Classical AI.md",
     "Notion/Artificial Intelligence/Statistics/Statistics.md",
     "Notion/Artificial Intelligence/Statistics/Hypothesis Testing.md",
-    "Notion/Artificial Intelligence/Statistics/Estimates of Variability.md",
-    "Notion/Artificial Intelligence/Statistics/Estimates of Location.md",
-    "Monte Carlo Methods.md",
-    "Notion/Artificial Intelligence/Statistics/Structured Data.md",
-    "Gaussian Naive Bayes.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Models/Models.md",
-    "Naive Bayes.md",
-    "Notion/Artificial Intelligence/Machine Learning/Supervised Learning/Supervised Learning.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
     "Pasted image 20250611114826.png",
@@ -236,11 +229,6 @@
     "Notion/Artificial Intelligence/Deep Learning Study",
     "Chapter_5.pdf",
     "Chapter_4.pdf",
-    "Chapter_3.pdf",
-    "Chapter_2.pdf",
-    "Chapter_1.pdf",
-    "Notion/College Management/Freshman Courses/GED108 - ART APPRECIATION/Notes/Pages",
-    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/System Administration/Software Services",
-    "Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Bits and Bytes/Connecting to the Internet"
+    "Chapter_3.pdf"
   ]
 }
