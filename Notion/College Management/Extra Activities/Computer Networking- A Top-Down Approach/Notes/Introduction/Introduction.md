@@ -5,6 +5,11 @@ Materials:
   - "[[Chapter_1.pdf]]"
 Reviewed: true
 ---
+[[Wireless Networks]]
+
+
+
+
 > [!important] **Computer Network**
 > 
 > s - a collection of autonomous computers interconnected by a single technology.

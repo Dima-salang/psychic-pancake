@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Memory Management.md",
+                "file": "Wireless Networks.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Memory Management"
+              "title": "Wireless Networks"
             }
           }
         ]
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 326.5004348754883,
+    "collapsed": true
   },
   "right": {
     "id": "07d0247339a5e8b4",
@@ -184,8 +185,11 @@
   },
   "active": "fbefa2d2ea7e5d6d",
   "lastOpenFiles": [
-    "Notion/Operating Systems/Operating Systems.md",
+    "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Introduction/Introduction.md",
+    "Wireless Networks.md",
+    "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Notes.md",
     "Memory Management.md",
+    "Notion/Operating Systems/Operating Systems.md",
     "Deadlocks.md",
     "Synchronization Tools.md",
     "Real-world OS Scheduling.md",
@@ -213,9 +217,6 @@
     "Layers.md",
     "Why Convolutions.md",
     "Introduction to ConvNets.md",
-    "Notion/Artificial Intelligence/Machine Learning/Introduction.md",
-    "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
-    "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
     "Pasted image 20250611114826.png",
