@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Wireless Networks.md",
+                "file": "4G and 5G Cellular Networks.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Wireless Networks"
+              "title": "4G and 5G Cellular Networks"
             }
           }
         ]
@@ -185,8 +185,9 @@
   },
   "active": "fbefa2d2ea7e5d6d",
   "lastOpenFiles": [
-    "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Introduction/Introduction.md",
     "Wireless Networks.md",
+    "4G and 5G Cellular Networks.md",
+    "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Introduction/Introduction.md",
     "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Notes.md",
     "Memory Management.md",
     "Notion/Operating Systems/Operating Systems.md",
@@ -216,7 +217,6 @@
     "Transfer Learning.md",
     "Layers.md",
     "Why Convolutions.md",
-    "Introduction to ConvNets.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
     "Pasted image 20250611114826.png",
