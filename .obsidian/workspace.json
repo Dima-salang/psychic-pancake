@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4G and 5G Cellular Networks.md",
+                "file": "Presentation of Data.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "4G and 5G Cellular Networks"
+              "title": "Presentation of Data"
             }
           }
         ]
@@ -185,8 +185,13 @@
   },
   "active": "fbefa2d2ea7e5d6d",
   "lastOpenFiles": [
-    "Wireless Networks.md",
+    "MAPUA QUANTITATIVE METHODS.md",
+    "Presentation of Data.md",
+    "Introduction to Statistics.md",
+    "Notion/Artificial Intelligence/Statistics/Statistics.md",
+    "Notion/Artificial Intelligence/Statistics/Estimates of Variability.md",
     "4G and 5G Cellular Networks.md",
+    "Wireless Networks.md",
     "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Introduction/Introduction.md",
     "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Notes.md",
     "Memory Management.md",
@@ -212,11 +217,6 @@
     "Operations on Processes.md",
     "Parameter Learning.md",
     "Notion/Operating Systems",
-    "Convolutional Networks.md",
-    "CNN Architectures.md",
-    "Transfer Learning.md",
-    "Layers.md",
-    "Why Convolutions.md",
     "Pasted image 20250627231924.png",
     "Pasted image 20250627225911.png",
     "Pasted image 20250611114826.png",

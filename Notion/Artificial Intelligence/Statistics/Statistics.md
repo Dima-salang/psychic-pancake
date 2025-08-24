@@ -8,3 +8,7 @@
 [[Hypothesis Testing]]
 
 [[Monte Carlo Methods]]
+
+
+
+[[MAPUA QUANTITATIVE METHODS]]
