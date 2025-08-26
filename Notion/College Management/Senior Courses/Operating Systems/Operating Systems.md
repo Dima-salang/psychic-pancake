@@ -1,4 +1,6 @@
 
+
+[[Notion/College Management/Senior Courses/Operating Systems/Operating Systems/Operating Systems|Operating Systems]]
 [[Operations on Processes]]
 [[Interprocess Communication]]
 [[Threads and Concurrency]]

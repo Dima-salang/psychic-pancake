@@ -10,7 +10,7 @@ Reviewed: false
 
 [[File Systems]]
 
-[[Processes]]
+[[Notion/College Management/Extra Activities/GOOGLE IT SUPPORT/Notes/Operating Systems/Processes]]
 
 [[Remote Connection]]
 
