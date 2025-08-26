@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Notion/Artificial Intelligence/Deep Learning Study/Neural Net Foundations.md",
+                "file": "Notion/College Management/Senior Courses/Research Methods in CS/What is Research.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Neural Net Foundations"
+              "title": "Outline of What is Research"
             }
           },
           {
@@ -196,7 +196,7 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "fbefa2d2ea7e5d6d",
+  "active": "cdbfeea6482b4413",
   "lastOpenFiles": [
     "Notion/College Management/Senior Courses/Quantitative Methods/Introduction to Statistics.md",
     "Notion/College Management/Senior Courses/Research Methods in CS/What is Research.md",
