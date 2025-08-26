@@ -1,4 +1,10 @@
+[[TCP - Connection-Oriented]]
+
+
+
+
 Excellent — now we’re diving into the **Transport Layer**, the critical glue between the **application layer** (what users and software actually use) and the **network layer** (which physically delivers packets between hosts).
+
 
 I’ll give you a structured, in-depth **lecture-style explanation** of **Section 3.1: Introduction and Transport-Layer Services**, elaborating on the definitions, theory, and practical significance.
 
@@ -799,3 +805,742 @@ Think of TCP as “heavyweight, safe, reliable courier service” and UDP as “
 ---
 
 Would you like me to now **draw the TCP vs UDP packet structure** (header fields) and show how minimal UDP really is compared to TCP? That’s often a great way to visualize their fundamental differences.
+
+
+
+
+
+Excellent — let’s dive deep into this and treat it like a proper lecture. We are now in the section where **reliable data transfer (rdt) protocols** are introduced. This is one of the most fundamental building blocks of networking, because everything from TCP to higher-level applications ultimately relies on the principles we’ll explore here.
+
+I’ll structure this lecture as follows:
+
+1. **Context & Motivation** – why we need reliable protocols.
+2. **rdt1.0 – Reliable transfer over a perfect channel**
+3. **rdt2.0 – Handling channels with bit errors**
+4. **The big problem with corrupted ACK/NAK**
+5. **Introducing sequence numbers and the way forward**
+
+---
+
+## 1. Context & Motivation
+
+The job of the **transport layer** is to deliver data **reliably** from one process to another, even though the **underlying network is unreliable**.
+
+* IP itself is *best-effort*: it does not guarantee delivery, order, or integrity.
+* Thus, if we want reliable communication, the transport layer must build mechanisms on top of this unreliable foundation.
+
+To study this systematically, computer networking textbooks (like Kurose & Ross) present a sequence of **simplified reliable data transfer protocols (rdt)**. Each one addresses a new challenge:
+
+* rdt1.0: No errors, no losses → trivial protocol.
+* rdt2.0: Errors can occur → add error detection, ACKs, NAKs.
+* rdt2.1 / rdt2.2: Handle corrupted ACK/NAK packets.
+* rdt3.0: Handle packet *losses* in addition to errors.
+
+This progressive approach shows you how **TCP itself evolved** conceptually.
+
+---
+
+## 2. rdt1.0 – Reliable Transfer over a Perfect Channel
+
+This is the trivial case:
+
+* The channel is assumed to be **perfectly reliable**.
+* No packet gets lost, no corruption occurs, and the receiver is always fast enough to process data.
+
+### Sender FSM (Finite State Machine)
+
+* One state: “wait for data from above.”
+* Event: `rdt_send(data)` → the sender creates a packet with `make_pkt(data)` and calls `udt_send(packet)` to send it into the channel.
+* Then loops back to the same state.
+
+### Receiver FSM
+
+* One state: “wait for packet from below.”
+* Event: `rdt_rcv(packet)` → extract data with `extract(packet, data)` and deliver it up using `deliver_data(data)`.
+
+**Key Points:**
+
+* There’s no acknowledgment mechanism, no retransmissions, no sequence numbers.
+* This is only a thought experiment — in the real world, physical channels are *never* this perfect.
+
+---
+
+## 3. rdt2.0 – Reliable Data Transfer over a Channel with Bit Errors
+
+Now we move to a more realistic channel model:
+
+* Packets are always delivered in order.
+* But **bits inside a packet may be corrupted** during transmission.
+
+Think of this as when you’re talking over a noisy phone line — words get garbled.
+
+### The solution: **Automatic Repeat reQuest (ARQ) protocols**
+
+The class of protocols designed to handle this problem are called **ARQ protocols**. They rely on three key mechanisms:
+
+1. **Error detection**
+
+   * Using techniques like checksums, CRCs, or parity.
+   * Extra bits are added to the packet so the receiver can check whether corruption occurred.
+   * Example: UDP uses an Internet checksum field.
+
+2. **Receiver feedback**
+
+   * Receiver must tell the sender what it saw:
+
+     * **ACK (Acknowledgment)** → packet was received correctly.
+     * **NAK (Negative Acknowledgment)** → packet was corrupted, please resend.
+   * These control messages are themselves small packets.
+
+3. **Retransmission**
+
+   * If the receiver signals that a packet was corrupted (NAK), the sender resends it.
+
+### rdt2.0 Sender FSM
+
+* Two states:
+
+  1. **Wait for call from above**: Get data, make a packet with checksum, send it. Transition → waiting for ACK/NAK.
+  2. **Wait for ACK/NAK**:
+
+     * If ACK received: Go back to waiting for new data.
+     * If NAK received: Retransmit the same packet, stay in this state until ACK arrives.
+
+This is a **stop-and-wait protocol** → the sender cannot send a new packet until the current one is ACKed.
+
+### rdt2.0 Receiver FSM
+
+* Single state: wait for packet.
+* On receiving a packet:
+
+  * If corrupted → send NAK.
+  * If correct → extract data, deliver it to the upper layer, and send ACK.
+
+---
+
+## 4. The Fatal Flaw in rdt2.0 – What If ACK/NAK is Corrupted?
+
+Here’s the catch:
+
+* We assumed ACK and NAK packets themselves are always reliable.
+* But what if the **feedback** is corrupted?
+
+Example:
+
+* Sender transmits packet → receiver gets it correctly, sends back an ACK.
+* ACK gets corrupted in transit → sender thinks it was a NAK and retransmits.
+* Now the receiver gets a duplicate packet!
+
+This introduces **ambiguity**:
+
+* The receiver cannot tell if the new packet is a duplicate retransmission or new data.
+* The sender cannot tell if the receiver actually got the packet correctly.
+
+This is a serious issue — if left unresolved, it breaks correctness.
+
+---
+
+## 5. The Fix: Sequence Numbers
+
+The elegant solution is to add a **sequence number field** to each data packet.
+
+* Every packet is tagged with a **sequence number** (e.g., 0, 1, 2 …).
+* The receiver uses the sequence number to distinguish:
+
+  * A **new packet** vs.
+  * A **retransmission of the previous packet**.
+
+For a simple stop-and-wait protocol:
+
+* A **1-bit sequence number** is sufficient (0 and 1 alternating).
+* Why? Because the sender only has one outstanding unacknowledged packet at a time.
+
+With this, even if the ACK/NAK is corrupted, the receiver can safely tell whether a retransmitted packet is a duplicate or truly new data.
+
+---
+
+## 🔑 Key Takeaways So Far
+
+* **rdt1.0**: trivial, reliable channel, no feedback needed.
+* **rdt2.0**: introduces **error detection, ACKs/NAKs, retransmission** → but flawed if ACK/NAK itself is corrupted.
+* **Sequence numbers** are the critical next step to resolve the ambiguity of duplicates.
+
+---
+
+👉 In the next stage (rdt2.1 and rdt2.2), we’ll see how **sequence numbers are incorporated** and how the protocol evolves into something that actually works even when ACKs/NAKs are corrupted. Then later in rdt3.0, we’ll tackle the hardest case: **packet loss**.
+
+---
+
+Would you like me to **continue the lecture into rdt2.1 and rdt2.2 right now**, so we can fully flesh out the solution to the corrupted ACK/NAK problem?
+
+
+
+Excellent — now we’re moving into the **real heart of reliable data transfer protocols**.
+Let’s treat this as a lecture, as if I were walking you through this material in class.
+
+---
+
+# **Lecture: Reliable Data Transfer (rdt2.1 → rdt3.0)**
+
+Up to this point, we’ve looked at simple versions of reliable data transfer:
+
+* **rdt1.0** → Assumes a perfectly reliable channel. No errors, no losses. Trivial sender and receiver, each with one state.
+* **rdt2.0** → Introduces *bit errors*. We need **checksums, ACKs, NAKs**, and retransmission. But it fails if the ACK/NAK themselves are corrupted.
+* **rdt2.1** and **rdt2.2** → Fix the problems of rdt2.0 using **sequence numbers** and refined ACK handling.
+* **rdt3.0** → Extends reliability to channels that can **both corrupt and lose packets**.
+
+Now let’s go step by step through **rdt2.1 → rdt2.2 → rdt3.0**.
+
+---
+
+## **1. rdt2.1: Handling Corrupted ACKs/NAKs**
+
+The problem with rdt2.0 was that **control packets (ACKs/NAKs) themselves could be corrupted**.
+If that happens, the sender doesn’t know what to do.
+
+### **The Fix: Sequence Numbers**
+
+We solve this by **adding sequence numbers** to each data packet.
+
+* The **sender** keeps track of which sequence number (0 or 1) it is sending.
+* The **receiver** expects a specific sequence number next.
+* If it gets the wrong one, it knows it’s a duplicate.
+
+Why just 1 bit? Because this is still a **stop-and-wait protocol**:
+
+* At most **one packet is outstanding** (either waiting for ACK or retransmission).
+* So only two sequence numbers are needed: `0` and `1`, alternating. (Hence the name **alternating-bit protocol** later.)
+
+### **Sender FSM (Figure 3.11)**
+
+* Two states: *waiting to send seq=0*, *waiting to send seq=1*.
+* Each state describes the packet currently being sent.
+* If ACK received with matching sequence → move to next state.
+* If NAK (or corrupted ACK/NAK) → resend packet.
+
+### **Receiver FSM (Figure 3.12)**
+
+* Two states: *waiting for seq=0* and *waiting for seq=1*.
+* If expected packet arrives correctly → deliver data, send ACK.
+* If corrupted packet arrives → send NAK.
+* If out-of-order packet arrives (duplicate) → resend ACK for last correctly received packet.
+
+⚡ **Key Takeaway**: rdt2.1 introduces **sequence numbers** and can now handle corrupted ACKs/NAKs without confusion.
+
+---
+
+## **2. rdt2.2: NAK-Free Protocol**
+
+NAKs are not strictly necessary. Instead of saying “that was wrong” (NAK), the receiver can just say:
+
+* “Last one I got correctly was seq=0.” (So implicitly: “I didn’t get seq=1.”)
+* “Last one I got correctly was seq=1.” (So implicitly: “I didn’t get seq=0.”)
+
+This eliminates the need for NAK packets.
+
+### **Changes in rdt2.2**
+
+* ACKs now **include the sequence number** of the packet being acknowledged.
+* The sender checks the ACK’s sequence number to know whether the right packet was received.
+
+So:
+
+* **If ACK matches current packet’s seq** → move forward, send next packet.
+* **If ACK repeats the previous packet’s seq** → that means receiver didn’t get the new one, so retransmit.
+
+⚡ **Key Takeaway**: rdt2.2 uses **only ACKs** (with sequence numbers). Duplicate ACKs act as implicit NAKs.
+
+This is very similar to how **modern TCP works**: TCP does not use NAKs, it relies on **duplicate ACKs** to infer loss.
+
+---
+
+## **3. rdt3.0: Dealing with Packet Loss**
+
+Now we add another layer of realism: in real networks, not only can packets be corrupted, they can also be **lost entirely**.
+
+### **The Problem**
+
+If a data packet or its ACK gets lost, the sender might wait forever.
+
+### **The Fix: Timers**
+
+The sender starts a **countdown timer** whenever it sends a packet.
+
+* If an ACK arrives in time → stop the timer.
+* If the timer expires before an ACK is received → retransmit the packet.
+
+This is the **classic retransmission timeout (RTO) mechanism** used in TCP.
+
+### **Sender FSM (Figure 3.15)**
+
+* On `rdt_send(data)`: send packet, start timer.
+* On `rdt_rcv(ACK)` with correct seq: stop timer, advance state.
+* On corrupted ACK or wrong ACK: resend packet.
+* On `timeout`: resend packet, restart timer.
+
+### **Receiver FSM** (not shown in the book, but straightforward):
+
+* Same as rdt2.2 — expect seq=0 or seq=1.
+* Deliver data only if expected packet arrives correctly.
+* Send ACK with sequence number of received packet.
+
+---
+
+## **4. Practical Example**
+
+Imagine sending data over Wi-Fi (which often drops packets):
+
+1. **Sender (seq=0)** sends a packet. Starts timer.
+2. **Receiver** gets it correctly. Sends `ACK0`.
+3. Sender gets `ACK0` → stops timer, moves to seq=1.
+4. **Next packet (seq=1)** is sent. But this time, packet is **lost**.
+5. Sender waits… timer expires. Retransmits packet with seq=1.
+6. Receiver gets it (seq=1), delivers data, sends `ACK1`.
+7. Sender gets `ACK1` → moves to seq=0 again.
+
+---
+
+## **5. Putting It All Together**
+
+At this point, we have developed the **essential components of reliable data transfer**:
+
+* **Checksums** → Detect bit errors.
+* **Sequence Numbers** → Detect duplicates, distinguish new vs retransmitted data.
+* **ACKs (with sequence numbers)** → Provide receiver feedback.
+* **Timers** → Recover from lost packets or ACKs.
+
+This combination is exactly the foundation of **TCP’s reliable transport mechanism** — though TCP adds more complexity (sliding windows, cumulative ACKs, fast retransmit, congestion control, etc.).
+
+⚡ **Key Takeaway**: rdt3.0 = the alternating-bit protocol with timers.
+It is the **simplest complete reliable transport protocol**.
+
+---
+
+✅ **Summary Table**
+
+| Protocol   | Channel Type                   | Features                                |
+| ---------- | ------------------------------ | --------------------------------------- |
+| **rdt1.0** | Perfectly reliable             | Just send/receive, trivial              |
+| **rdt2.0** | Bit errors                     | Checksum, ACK/NAK, retransmit           |
+| **rdt2.1** | Bit errors + corrupted ACK/NAK | Sequence numbers, ACK+NAK               |
+| **rdt2.2** | Bit errors + corrupted ACK/NAK | Sequence numbers, **ACK only (no NAK)** |
+| **rdt3.0** | Bit errors + packet loss       | Sequence numbers, ACK only, **timers**  |
+
+---
+
+Now, here’s a question for you (like I’d ask in class):
+👉 If rdt3.0 already has **sequence numbers and timers**, why does TCP need **more complex mechanisms** like sliding windows and congestion control?
+
+Would you like me to continue the lecture into that direction, so you see how this simple rdt foundation grows into **TCP’s full reliability model**?
+
+
+Alright, let’s go into full **professor mode** here and break this down carefully. We’re now moving into one of the *most important* leaps in the design of reliable transport protocols: moving from **stop-and-wait (rdt3.0)** to **pipelined protocols** like **Go-Back-N (GBN)** and later **Selective Repeat (SR)**.
+
+This is crucial because *protocol efficiency* is no longer about just being correct (rdt2.x, rdt3.0 gave us correctness) but about **performance** in real networks where round-trip times (RTTs) can dwarf transmission times.
+
+---
+
+# 🚦 Lecture: Pipelined Reliable Data Transfer Protocols & Go-Back-N (GBN)
+
+---
+
+## 1. The Problem with Stop-and-Wait (rdt3.0)
+
+Recall **rdt3.0**:
+
+* Sender transmits *one* packet.
+* Waits for an ACK or times out.
+* If ACK is good → send next.
+* If ACK lost or packet lost → timeout → retransmit.
+* **Sequence numbers alternate (0,1) → "alternating-bit protocol".**
+
+✅ Functionally correct.
+❌ Performance: *horrible* in high-speed, high-delay networks.
+
+### Example:
+
+* East coast ↔ West coast:
+
+  * RTT = 30 ms
+  * Transmission rate R = 1 Gbps
+  * Packet size L = 1000 bytes (8000 bits)
+  * Transmission delay: `d_trans = L/R = 8 µs` (tiny compared to RTT)
+
+So:
+
+* It takes **30 ms** to deliver one packet (waiting for ACK),
+* During which the sender only spent **0.008 ms actually transmitting**.
+* Utilization:
+
+  $$
+  U = \frac{L/R}{RTT + L/R} \approx 0.00027
+  $$
+
+  → **0.027% channel utilization!**
+
+👉 That means with a **1 Gbps link**, we’re effectively only getting \~**267 kbps throughput**.
+
+> **Takeaway:** Stop-and-wait wastes nearly all the bandwidth. It’s like sending a single truck across the country, then waiting for it to come back empty before sending the next one.
+
+---
+
+## 2. The Solution: Pipelining
+
+**Pipelining** means:
+
+* Don’t wait for an ACK before sending the next packet.
+* Allow multiple *unacknowledged* packets to be "in flight" at once.
+* This "pipeline" of packets fills the bandwidth-delay product of the network.
+
+Visual (stop-and-wait vs pipelining):
+
+* Stop-and-wait: channel is mostly empty.
+* Pipelined: channel is full, ACKs and data flow continuously.
+
+---
+
+## 3. Consequences of Pipelining
+
+When we allow multiple packets outstanding, new requirements appear:
+
+1. **Sequence Numbers Must Expand**
+
+   * Stop-and-wait used only {0,1}.
+   * Pipelined: must support a range of numbers large enough to uniquely identify all *in-flight packets*.
+   * With window size N, we need more than log₂(N) bits.
+
+2. **Sender Buffers Packets**
+
+   * Because packets may need retransmission (if ACK lost).
+   * Sender must store unacknowledged packets.
+
+3. **Receiver May Need Buffers**
+
+   * If packets arrive out of order (depends on protocol, e.g., Selective Repeat vs GBN).
+   * Must decide whether to **discard** or **buffer** them.
+
+4. **Error Recovery Becomes More Complex**
+
+   * With stop-and-wait: lost → retransmit the single packet.
+   * With pipelining: which packets do we retransmit? All outstanding ones (GBN)? Or just the missing one (SR)?
+
+---
+
+## 4. Go-Back-N (GBN) Protocol
+
+### Key Idea:
+
+* Sender maintains a **window of size N**.
+* Can transmit up to N *unacknowledged* packets.
+* If a packet is lost or delayed, the sender **goes back and retransmits all packets from that one onwards**.
+
+---
+
+### 4.1 Sender’s View of the Window
+
+Define:
+
+* **base** = seq # of the oldest unacknowledged packet.
+* **nextseqnum** = seq # of the next packet to send.
+
+Then:
+
+* `[0 … base-1]`: already acknowledged.
+* `[base … nextseqnum-1]`: sent, but not ACK’d.
+* `[nextseqnum … base+N-1]`: free slots, can send immediately.
+* `[base+N … ]`: not usable yet (must wait).
+
+This is called a **sliding window** protocol.
+
+---
+
+### 4.2 Sender Events
+
+1. **rdt\_send(data)** (application passes data to send):
+
+   * If window not full: create packet, send it, add to buffer.
+   * If `base == nextseqnum`, start timer (for oldest unACK’d).
+   * If window full: refuse or buffer data until space frees up.
+
+2. **ACK Received**:
+
+   * ACK is **cumulative** (important!).
+   * ACK(n) → means receiver has received all packets up to n.
+   * Slide window forward, free space.
+   * If no unACK’d packets remain, stop timer. Otherwise, restart.
+
+3. **Timeout**:
+
+   * Sender retransmits **all packets in window**.
+   * This is why it’s called **Go-Back-N**: we go back and retransmit from base onwards.
+
+---
+
+### 4.3 Receiver Events
+
+Receiver is very simple in GBN:
+
+* If packet is correct **and in order** (seq == expected): deliver data, send ACK, increment expectedseqnum.
+* Else: discard packet, resend ACK for the *last in-order packet received*.
+
+👉 Receiver does NOT buffer out-of-order packets.
+
+* Simplicity: only one variable (expectedseqnum).
+* Downside: wasted bandwidth if we discard valid but out-of-order packets.
+
+---
+
+### 4.4 Example (Window Size = 4)
+
+1. Sender sends pkt0, pkt1, pkt2, pkt3.
+2. Suppose pkt2 is lost.
+
+   * Receiver gets pkt0, pkt1 → sends ACK1.
+   * Receiver gets pkt3 → sees it’s out of order → discards, resends ACK1.
+   * Same for pkt4, pkt5 → discards, resends ACK1.
+3. Sender eventually times out (on pkt2), retransmits pkt2..pkt5.
+4. Receiver accepts pkt2 (delivers), then pkt3, pkt4, pkt5 in order.
+
+---
+
+## 5. Analysis of GBN
+
+### Advantages:
+
+* Efficient compared to stop-and-wait.
+* Simple receiver design (no buffering).
+* Works well if loss probability is low.
+
+### Disadvantages:
+
+* **Inefficient under high loss**:
+
+  * One lost packet causes retransmission of *all subsequent packets in the window*, even if they were received correctly.
+  * This wastes bandwidth.
+
+This inefficiency motivates **Selective Repeat (SR)**, where receiver buffers out-of-order packets and sender retransmits only missing ones.
+
+---
+
+## 6. Real-World Note
+
+* TCP (which we’ll study soon) is essentially a **sliding window protocol**, borrowing heavily from GBN and SR.
+* It uses **cumulative ACKs** like GBN but also has features (fast retransmit, selective acknowledgment options) that move it closer to SR.
+* TCP also dynamically adapts its window size based on **congestion control**, which we’ll discuss later.
+
+---
+
+# 📌 Summary of Key Terms to Remember
+
+* **Stop-and-wait**: one outstanding packet, terrible utilization.
+* **Pipelining**: multiple in-flight packets to fill bandwidth-delay product.
+* **Window size (N)**: max # of outstanding, unACK’d packets.
+* **Sliding window**: sender view moves as ACKs arrive.
+* **Cumulative ACKs**: one ACK acknowledges all previous packets.
+* **GBN**: on timeout, retransmit *all packets from base onwards*.
+* **Receiver in GBN**: simple, discards out-of-order packets.
+
+---
+
+👉 Next, we’ll cover **Selective Repeat (SR)**, which improves efficiency under loss by letting the receiver buffer out-of-order packets.
+
+---
+
+Would you like me to continue this lecture directly into **Selective Repeat (SR)** (3.4.4), so you see the contrast with GBN immediately?
+
+
+
+Perfect — now we’re moving into **Selective Repeat (SR)**, which is the natural evolution after Go-Back-N (GBN). I’ll treat this as a formal lecture, tying the book’s content (your provided text) with my deeper commentary, side notes, and practical networking insights.
+
+---
+
+# 📖 Lecture: Selective Repeat (SR) – Principles of Reliable Data Transfer
+
+---
+
+## 1. The Motivation: Why Selective Repeat?
+
+We saw earlier that **GBN (Go-Back-N)** solves the utilization problem of stop-and-wait by allowing multiple packets in flight. But GBN has an inefficiency:
+
+* With **window size N** and a **large bandwidth-delay product**, the sender may have hundreds or thousands of packets “in flight.”
+* If **one packet is lost**, GBN forces the sender to **retransmit that lost packet plus *all subsequent packets in the window***, even if the receiver had already received them correctly.
+
+📌 **Analogy**:
+Imagine dictating 1,000 words to a scribe. If the scribe mishears *one* word, you repeat **all 1,000 words again**. Highly redundant, highly inefficient.
+
+This inefficiency **grows worse as error probability increases** — the pipeline gets clogged with **unnecessary retransmissions**.
+
+👉 Enter **Selective Repeat (SR):**
+Instead of retransmitting entire chunks, retransmit **only the packets actually lost or corrupted**.
+
+---
+
+## 2. Core Idea of Selective Repeat (SR)
+
+* The **sender retransmits selectively** (only lost packets).
+* The **receiver acknowledges packets individually**, not cumulatively as in GBN.
+* The **receiver buffers out-of-order packets** until missing ones arrive, then delivers them in order to the upper layer.
+
+This is more complex but far more efficient in error-prone environments.
+
+---
+
+## 3. Sender and Receiver Windows in SR
+
+Like GBN, SR uses a **sliding window of size N**, but:
+
+* The **sender’s window** allows up to N unACK’d packets in flight.
+* The **receiver’s window** also spans N sequence numbers (not just one expected packet, like GBN).
+
+### Figure 3.23 (Sender & Receiver View of Sequence Numbers)
+
+* **Sender view**:
+
+  * Left edge = `send_base` (oldest unACK’d).
+  * Right edge = `send_base + N - 1`.
+  * ACKs slide the window forward selectively.
+
+* **Receiver view**:
+
+  * Left edge = `rcv_base` (lowest not-yet-delivered).
+  * Receiver accepts any packet in `[rcv_base, rcv_base+N-1]`.
+  * Out-of-order packets are buffered until the gap is filled.
+
+📌 **Key Difference from GBN:**
+GBN receiver discards out-of-order packets.
+SR receiver **buffers them**.
+
+---
+
+## 4. SR Sender Behavior (Figure 3.24)
+
+Sender actions:
+
+1. **Data received from above**:
+
+   * If sequence number within window → send, buffer for possible retransmit.
+   * If outside window → either buffer for later or refuse until window slides.
+
+2. **Timeout**:
+
+   * Unlike GBN, **each packet has its own timer**.
+   * Only the timed-out packet is retransmitted.
+   * ⚡ Implementation trick: one hardware timer can simulate many logical timers \[Varghese 1997].
+
+3. **ACK received**:
+
+   * Mark packet as received if in window.
+   * If ACK = `send_base`, slide window forward to the next unACK’d packet.
+   * If window slides, new packets (previously outside the window) can now be sent.
+
+---
+
+## 5. SR Receiver Behavior (Figure 3.25)
+
+Receiver actions:
+
+1. **Packet in window `[rcv_base, rcv_base+N-1]` and correct**:
+
+   * Send ACK for it.
+   * If not previously received → buffer it.
+   * If it equals `rcv_base`, deliver it and any consecutive buffered packets upwards, then slide window forward.
+
+2. **Packet in `[rcv_base-N, rcv_base-1]` (already ACK’d)**:
+
+   * Still reACK it!
+   * Why? Because ACKs can be lost in the channel, and without this reACK the sender may stall forever.
+
+3. **Otherwise (outside of window)**: ignore.
+
+📌 **Note**: This reACKing rule is essential. If the receiver didn’t reACK old packets, the sender might never advance its window if an ACK was lost.
+
+---
+
+## 6. Example Walkthrough (Figure 3.26)
+
+Scenario:
+
+* Sender sends pkt0..pkt5.
+* pkt2 is lost.
+
+Receiver:
+
+* Gets pkt0, pkt1 → delivers them, ACK0, ACK1.
+* Gets pkt3, pkt4, pkt5 → buffers them, sends ACK3, ACK4, ACK5.
+* Waits for pkt2.
+
+Sender:
+
+* Times out on pkt2 → retransmits pkt2.
+* Receiver gets pkt2 → now has pkt2..pkt5 in buffer.
+* Delivers pkt2, pkt3, pkt4, pkt5 in order to upper layer.
+
+✅ Only pkt2 was retransmitted (vs. GBN, which would’ve retransmitted pkt2–pkt5).
+
+---
+
+## 7. Subtle Challenge: Window Size vs Sequence Number Space
+
+In practice, sequence numbers are **finite** (e.g., 0–3 if only 2 bits).
+
+Problem: sender and receiver may lose sync about whether a packet is a *new transmission* or a *retransmission of an old packet*.
+
+### Example (Figure 3.27):
+
+* Sequence numbers = {0,1,2,3}.
+* Window size = 3.
+
+Case A: ACKs lost → sender retransmits pkt0 (old data).
+Case B: ACKs arrive → sender sends pkt4 (new data, seq#0).
+
+Receiver sees a packet with seq#0. But is it the old pkt0 retransmission, or the new pkt4?
+→ Receiver can’t distinguish.
+
+📌 **Rule**: For SR to work correctly:
+
+$$
+\text{Window size } N \leq \frac{1}{2} \times \text{Sequence Number Space}
+$$
+
+This guarantees sender/receiver don’t confuse old and new packets.
+
+---
+
+## 8. Practical Implications
+
+* **SR is more efficient** than GBN under high loss, but more **complex**:
+
+  * Requires per-packet timers.
+  * Receiver must buffer out-of-order packets.
+  * Sequence number management is trickier.
+
+* **Real networks (TCP)**:
+
+  * TCP is somewhere between GBN and SR.
+  * Uses **cumulative ACKs** (like GBN).
+  * But with **Selective Acknowledgment (SACK)** extensions, it can behave more like SR.
+
+---
+
+## 9. Key Terms to Remember
+
+* **SR (Selective Repeat)**: retransmit *only* lost/corrupted packets.
+* **Sender window**: maintains N outstanding packets, per-packet timers.
+* **Receiver window**: buffers out-of-order packets, delivers in order when gaps are filled.
+* **ACK rules**: individual ACKs, reACK previously acknowledged packets.
+* **Window constraint**: $N \leq \frac{1}{2} \times \text{SeqNumSpace}$.
+
+---
+
+✅ With SR, we have completed the family of **reliable data transfer (rdt) protocols**:
+
+* rdt1.0–rdt3.0 (stop-and-wait, correctness).
+* GBN (efficiency with cumulative ACKs).
+* SR (efficiency with selective retransmissions).
+
+Now you see the *big picture*: every mechanism we’ve added was to address real-world constraints of **delay, loss, duplication, and reordering**.
+
+---
+
+Would you like me to next build a **comparison table (Stop-and-Wait vs GBN vs SR)** so you can clearly see their trade-offs side by side — the kind of thing examiners love to ask?
+
