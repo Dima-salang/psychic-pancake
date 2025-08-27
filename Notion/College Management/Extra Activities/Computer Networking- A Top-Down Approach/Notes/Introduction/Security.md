@@ -546,3 +546,665 @@ Even though plaintext repeated, ciphertext differs → security preserved.
 ---
 
 Would you like me to continue this lecture by covering **stream ciphers** next (the other major family of symmetric key ciphers), or go deeper into **AES internals** (SubBytes, ShiftRows, MixColumns, etc.) so you get a feel for how block ciphers really work under the hood?
+
+
+
+Perfect — now we’re diving into one of the most elegant and revolutionary ideas in computer security: **Public Key Cryptography** and, specifically, the **RSA algorithm**.
+
+I’ll treat this as a full lecture, covering the **theory**, the **practical aspects**, and the **security implications**, while keeping all the definitions and steps intact from your material — but elaborated so you deeply understand *why* each piece matters.
+
+---
+
+# 📖 Lecture: Public Key Encryption and RSA
+
+---
+
+## 1. Background: The Symmetric Key Problem
+
+For **2,000 years**, encryption relied on **symmetric key cryptography**:
+
+* Both parties use the **same secret key** for both encryption and decryption.
+* The problem: **Key distribution**.
+
+  * If Alice and Bob are on opposite sides of the world, how do they securely agree on a shared key without already having a secure channel?
+  * Example: Caesar’s centurions could meet at the Roman baths to exchange keys — but in the Internet era, that’s impractical.
+
+**This is known as the “key distribution problem.”**
+It was the **single biggest barrier** to secure global communications before the 1970s.
+
+---
+
+## 2. The Breakthrough: Diffie–Hellman (1976)
+
+Whitfield **Diffie** and Martin **Hellman** (1976) proposed a **radically different idea**:
+
+* Can two parties agree on a secret **without ever sending it directly**?
+* They invented **public key cryptography**: each user has **two keys**, not one.
+
+  * **Public key (K⁺)** → can be shared with everyone.
+  * **Private key (K⁻)** → kept secret.
+
+> Fun side note: Similar ideas were already discovered secretly by the **UK’s CESG** in the early 1970s (James Ellis, Clifford Cocks), but those were classified. Diffie & Hellman’s work brought the concept to the **public domain** and sparked modern cryptography.
+
+---
+
+## 3. The Model of Public Key Cryptography
+
+Let’s assume Bob wants to receive encrypted messages:
+
+* He publishes **public key Kᴮ⁺** (everyone, even attackers, can see this).
+* He keeps **private key Kᴮ⁻** secret.
+* Alice encrypts a message `m` with Bob’s public key:
+
+  $$
+  c = Kᴮ⁺(m)
+  $$
+* Bob decrypts with his private key:
+
+  $$
+  m = Kᴮ⁻(c) = Kᴮ⁻(Kᴮ⁺(m))
+  $$
+
+### Remarkable Property
+
+* Encryption and decryption are **inverses**.
+* Even better: the order can be reversed!
+
+  $$
+  Kᴮ⁺(Kᴮ⁻(m)) = Kᴮ⁻(Kᴮ⁺(m)) = m
+  $$
+
+This makes public key cryptography useful for:
+
+* **Confidentiality** (Alice encrypts with Bob’s public key → only Bob can read it).
+* **Authentication & Digital Signatures** (Bob signs with his private key → anyone can verify using his public key).
+
+---
+
+## 4. The RSA Algorithm (Rivest–Shamir–Adleman, 1978)
+
+RSA is the most famous and widely deployed public key algorithm.
+
+It relies on **modular arithmetic** and the mathematical difficulty of factoring large integers.
+
+---
+
+### 🔹 4.1 Refresher on Modular Arithmetic
+
+* $x \mod n$ = remainder of dividing $x$ by $n$.
+* Example: $19 \mod 5 = 4$.
+* Important properties:
+
+  1. $(a \mod n + b \mod n) \mod n = (a + b) \mod n$
+  2. $(a \mod n \times b \mod n) \mod n = (a \times b) \mod n$
+  3. $(a \mod n)^d \mod n = a^d \mod n$
+
+This last identity is the backbone of RSA.
+
+---
+
+### 🔹 4.2 Key Generation
+
+Bob generates keys as follows:
+
+1. **Choose two large prime numbers** $p$ and $q$.
+
+   * Each hundreds of bits long (e.g., 512–1024 bits).
+   * Insecure to pick small primes!
+
+2. **Compute**:
+
+   $$
+   n = p \times q
+   $$
+
+   $$
+   z = (p-1)(q-1)
+   $$
+
+3. **Choose encryption exponent $e$**:
+
+   * $e < n$
+   * $\gcd(e, z) = 1$ (i.e., relatively prime to $z$).
+   * Common choice: $e = 65537$ (fast and secure).
+
+4. **Compute decryption exponent $d$**:
+
+   * Find $d$ such that:
+
+     $$
+     e \times d \equiv 1 \mod z
+     $$
+   * This means $(ed - 1)$ is divisible by $z$.
+
+5. **Public key**: $(n, e)$
+   **Private key**: $(n, d)$
+
+---
+
+### 🔹 4.3 Encryption & Decryption
+
+* **Encryption (Alice → Bob)**:
+  Represent message as integer $m < n$.
+
+  $$
+  c = m^e \mod n
+  $$
+
+* **Decryption (Bob)**:
+
+  $$
+  m = c^d \mod n
+  $$
+
+Thus:
+
+$$
+m = (m^e)^d \mod n
+$$
+
+---
+
+### 🔹 4.4 Example (Toy RSA)
+
+Let’s use small primes just to illustrate:
+
+* $p = 5, q = 7$
+* $n = pq = 35$, $z = (p-1)(q-1) = 24$
+* Choose $e = 5$ (relatively prime to 24)
+* Find $d = 29$, since $5 \times 29 \equiv 1 \mod 24$
+
+Keys:
+
+* Public: $(35, 5)$
+* Private: $(35, 29)$
+
+Encrypt “l” (12):
+
+$$
+c = 12^5 \mod 35 = 248832 \mod 35 = 17
+$$
+
+Decrypt:
+
+$$
+m = 17^{29} \mod 35 = 12
+$$
+
+Recovered original! 🎉
+
+⚠️ Note: This toy example is insecure — in reality, $p, q$ must be hundreds of bits.
+
+---
+
+## 5. Why Does RSA Work?
+
+We need to show that:
+
+$$
+m^{ed} \mod n = m
+$$
+
+From number theory:
+
+* If $n = pq$, and $z = (p-1)(q-1)$, then:
+
+  $$
+  x^y \mod n = x^{y \mod z} \mod n
+  $$
+
+Since we chose $e$ and $d$ such that:
+
+$$
+ed \equiv 1 \mod z
+$$
+
+We get:
+
+$$
+m^{ed} \mod n = m^1 \mod n = m
+$$
+
+So encryption and decryption are exact inverses.
+
+---
+
+## 6. Practical Use of RSA
+
+RSA has some **practical limitations**:
+
+* Exponentiation with huge numbers (2048+ bits) is **computationally expensive**.
+* Encrypting large files directly with RSA is inefficient.
+
+### 🔹 Solution: Session Keys
+
+* Use RSA to securely exchange a **session key (Kₛ)**.
+* Then use a **fast symmetric cipher (AES, DES, ChaCha20, etc.)** with that session key for bulk data.
+
+This hybrid approach is used in:
+
+* **TLS (HTTPS)**
+* **PGP (email encryption)**
+* **IPsec VPNs**
+
+---
+
+## 7. Security of RSA
+
+* Security depends on difficulty of **factoring n** into $p$ and $q$.
+* If attacker factors $n$, they can compute $z$ and derive $d$.
+* As of today, **no efficient classical algorithm** exists for factoring 2048-bit integers.
+
+⚠️ But quantum computing poses a threat:
+
+* **Shor’s algorithm** can factor integers in polynomial time.
+* Once large quantum computers exist, RSA will be broken.
+* Research is underway on **post-quantum cryptography** (lattice-based, hash-based, etc.).
+
+---
+
+# ✅ Summary
+
+* **Symmetric cryptography** → fast, but requires shared secret.
+* **Public key cryptography (RSA)** → solves the key distribution problem.
+* RSA uses:
+
+  * Large primes $p, q$,
+  * Public key $(n, e)$, private key $(n, d)$.
+* Encryption: $c = m^e \mod n$.
+* Decryption: $m = c^d \mod n$.
+* In practice: RSA is used to **exchange session keys**, not bulk data.
+* Security: Based on difficulty of factoring $n$. Quantum computers could eventually break it.
+
+---
+
+👉 Would you like me to also give you a **step-by-step walkthrough of a realistic RSA example** (with 1024-bit primes but simplified computation) so you can see how encryption/decryption actually works in practice with “real” sizes?
+
+
+Excellent — now we’re entering one of the **core pillars of modern cybersecurity**: **Message Integrity** and **Digital Signatures**.
+Up to now, you’ve seen encryption used for **confidentiality** (keeping secrets private). But security is never just about secrecy — it’s equally about making sure that what you receive is **authentic** (it really came from who you think it came from) and **untampered** (not modified in transit).
+
+Today’s lecture will unpack this systematically: **cryptographic hash functions, message authentication codes (MACs), and digital signatures**. I’ll keep to the structure of the material, but I’ll elaborate with technical depth, examples, and practical notes from the field.
+
+---
+
+# 📖 Lecture 8.3: Message Integrity and Digital Signatures
+
+---
+
+## 1. The Message Integrity Problem
+
+We define **message integrity** (a.k.a. **message authentication**) as the guarantee that:
+
+1. The message indeed originated from the claimed sender.
+2. The message was not modified in transit.
+
+Consider a networking example:
+
+* Protocol: **OSPF (Open Shortest Path First)** uses **link-state routing**.
+* Each router broadcasts a **link-state advertisement (LSA)** with:
+
+  * Its neighbors,
+  * The link costs.
+* Attack scenario: An intruder, Trudy, injects **bogus LSAs** → incorrect routing tables → blackholes, loops, or traffic hijacking.
+
+Thus, integrity is as vital as confidentiality. Even if data is encrypted, without integrity protection, an attacker can alter it.
+
+---
+
+## 2. Cryptographic Hash Functions
+
+### 2.1 Definition
+
+A **hash function** takes an arbitrary-length message $m$ and outputs a **fixed-size string** $H(m)$, called the **hash** or **digest**.
+
+Mathematically:
+
+$$
+H: \{0,1\}^* \rightarrow \{0,1\}^n
+$$
+
+where input is arbitrary-length, output is fixed $n$ bits (e.g., 128, 160, 256 bits).
+
+### 2.2 Requirements for Cryptographic Hash Functions
+
+* **Collision resistance**: Computationally infeasible to find two different messages $x \neq y$ such that $H(x) = H(y)$.
+* **Pre-image resistance**: Given $h$, infeasible to find any $m$ such that $H(m) = h$.
+* **Second pre-image resistance**: Given $m_1$, infeasible to find $m_2 \neq m_1$ such that $H(m_1) = H(m_2)$.
+
+---
+
+### 2.3 Why Simple Checksums Fail
+
+Checksums (Internet checksum, CRC) detect random errors but are **not secure**.
+
+Example from material:
+
+* Message: `"IOU100.99BOB"` → checksum = `B2C1D2AC`.
+* Fraudulent message: `"IOU900.19BOB"` → checksum **also** = `B2C1D2AC`.
+
+This is a **collision**, trivial to generate because simple addition lacks cryptographic hardness.
+⚠️ Lesson: **Checksums ≠ Cryptographic hashes**.
+
+---
+
+### 2.4 Standard Cryptographic Hash Functions
+
+* **MD5** (Rivest, 1991): 128-bit output. Widely used historically, but broken (collisions found, 2005). Not recommended for security today.
+* **SHA-1** (NIST, 1995): 160-bit output. Federal standard. Stronger than MD5 but also broken (collisions demonstrated in 2017).
+* **SHA-2 (SHA-256, SHA-512)**: Current secure standard (256- and 512-bit digests).
+* **SHA-3 (Keccak, 2015)**: Newer standard with a different construction (sponge).
+
+---
+
+## 3. Message Authentication Codes (MACs)
+
+### 3.1 Problem with Hash-Only Integrity
+
+If Alice sends $(m, H(m))$, Bob can verify by recomputing $H(m)$.
+But Trudy can forge:
+
+* Choose $m'$, compute $H(m')$, send $(m', H(m'))$.
+* Bob cannot distinguish between Alice and Trudy.
+
+### 3.2 Adding a Secret
+
+Solution: Alice and Bob share a **secret key s** (authentication key).
+
+Procedure:
+
+1. Alice computes $H(m+s)$ → called the **Message Authentication Code (MAC)**.
+2. Alice sends $(m, H(m+s))$.
+3. Bob recomputes $H(m+s)$ using his copy of $s$.
+4. If matches, authenticity + integrity is guaranteed.
+
+**Key idea**: Without $s$, Trudy cannot forge a valid MAC.
+
+---
+
+### 3.3 Practical MAC Standards
+
+* **HMAC (Hash-based MAC)**: Defined in **RFC 2104**.
+
+  * Runs the data and secret through the hash function **twice**.
+  * Can be used with MD5, SHA-1, or SHA-2.
+* **Used in**: TLS, IPsec, SSH, OSPF authentication.
+
+⚠️ Important note: MAC here = **Message Authentication Code**, *not* **Medium Access Control** (link-layer).
+
+---
+
+### 3.4 Key Distribution Problem
+
+But how do Alice and Bob get the **shared secret s**?
+
+* Manual installation (network admin physically sets the key).
+* Or distribute securely using **public key encryption** (encrypt the secret with receiver’s public key).
+  This is why MACs are efficient but require **pre-shared secrets**.
+
+---
+
+## 4. Digital Signatures
+
+Now we move to the heavyweight solution: **digital signatures**.
+
+### 4.1 Concept
+
+Analogous to handwritten signatures:
+
+* Must be **verifiable** (anyone can check).
+* Must be **nonforgeable** (only signer can create).
+
+### 4.2 Why MACs Don’t Work as Signatures
+
+* With MAC, both sender and receiver know the secret.
+* That means **receiver could forge sender’s messages**.
+* For signatures, only the signer must be able to create, but *anyone* should be able to verify.
+
+---
+
+### 4.3 Using Public Key Cryptography
+
+Perfect fit:
+
+* Bob has private key $K_B^-$, public key $K_B^+$.
+* To sign: Bob computes signature = $K_B^-(m)$.
+* To verify: Anyone applies $K_B^+$ → recovers $m$.
+
+Properties:
+
+* Only Bob (who owns $K_B^-$) could have created signature.
+* Anyone can verify using $K_B^+$.
+
+Thus: **authenticity + integrity + non-repudiation**.
+
+---
+
+### 4.4 Efficiency Improvement with Hashing
+
+Problem: Signing entire message is computationally expensive.
+Solution:
+
+* First compute digest $H(m)$.
+* Then sign only digest: signature = $K_B^-(H(m))$.
+
+Advantages:
+
+* Faster signing.
+* Protects message integrity (any change alters digest).
+
+---
+
+### 4.5 Procedure (Bob → Alice)
+
+1. Bob computes digest: $h = H(m)$.
+2. Bob signs: signature = $K_B^-(h)$.
+3. Bob sends $(m, signature)$.
+4. Alice computes her own digest $H(m)$.
+5. Alice verifies signature with $K_B^+$: checks $K_B^+(signature) = h$.
+	1. this is because we used bob's private key to sign the hash. if we apply the same to the resulting hash using bob's public key, then we should get the original hash. if it is equal to the hash computed by alice, then it is matched.
+6. If match:
+
+   * Message unaltered.
+   * Message signed by Bob.
+
+---
+
+## 5. Comparing MACs and Digital Signatures
+
+| Property     | MAC                              | Digital Signature                            |
+| ------------ | -------------------------------- | -------------------------------------------- |
+| Keys         | Shared secret key                | Private/public key pair                      |
+| Verification | Only parties with secret key     | Anyone with public key                       |
+| Forgeability | Both sender & receiver can forge | Only sender can sign                         |
+| Efficiency   | Very efficient (hash only)       | Expensive (public key ops + PKI required)    |
+| Use Cases    | OSPF, TLS, IPsec                 | PGP email, software signing, legal documents |
+
+---
+
+# ✅ Summary
+
+* **Message Integrity** = assurance that message comes from claimed sender & unaltered.
+* **Hash Functions**: Fixed-length digest, must be collision-resistant. Simple checksums are insecure.
+* **MACs**: Integrity + authenticity using shared secret key. Efficient but require secret distribution.
+* **Digital Signatures**: Integrity + authenticity + non-repudiation using public key cryptography. More expensive but universally verifiable.
+* **Practical reality**:
+
+  * **MACs** → used inside protocols (fast, many verifications).
+  * **Digital Signatures** → used for non-repudiation and global verification (e.g., signed software, certificates).
+
+---
+
+👉 Would you like me, in the next lecture, to dive into **PKI (Public Key Infrastructure)** — i.e., how we actually bind public keys to identities using **certificates and certificate authorities**? That’s the natural continuation of digital signatures in real-world networking.
+
+
+Perfect — this is an excellent point in the course to dig deep into **Public Key Certification** and how it connects to **end-point authentication**.
+This is one of the most subtle and important pieces of modern network security, and it ties together everything we’ve discussed about **message integrity, digital signatures, and trust models**.
+
+I’ll treat this as a lecture, carefully structured:
+
+---
+
+# 📖 Lecture 8.4 – Public Key Certification and End-Point Authentication
+
+---
+
+## 1. The Problem: Why Public Key Certification Matters
+
+We know from digital signatures that:
+
+* If Alice has Bob’s *authentic* public key, she can verify any message Bob signed.
+* But if Alice gets fooled into accepting **Trudy’s public key while believing it is Bob’s**, she will accept Trudy’s forged messages.
+
+This is the classic **“pizza prank” scenario** from your material:
+
+* Bob digitally signs his pizza order → Alice verifies with Bob’s real public key. ✅
+* Trudy pretends to be Bob → sends her own message, her own public key, her own digital signature.
+* Alice accepts it (thinking Trudy’s public key is Bob’s). ❌
+
+The attack works because **nothing binds the public key to Bob’s identity**.
+This illustrates the core problem:
+
+🔑 **How do we trust that a given public key really belongs to the entity it claims to represent?**
+
+This is where **Certification Authorities (CAs)** and **certificates** come in.
+
+---
+
+## 2. Certification Authorities (CAs)
+
+A **Certification Authority (CA)** is a trusted third party whose job is to:
+
+1. **Verify the identity** of an entity (person, server, router, etc.).
+
+   * How thorough this is depends on the CA’s policies.
+   * Example: A sloppy CA (“Fly-by-Night CA”) might issue a certificate if Trudy just *claims* to be Alice.
+   * A reputable CA (e.g., DigiCert, Let’s Encrypt, or a government agency) performs stronger checks (documents, domain ownership proof, legal vetting).
+   * ⚠️ Trust in a public key is only as strong as trust in the CA that issued the certificate.
+
+2. **Issue a certificate**:
+
+   * A **certificate** is a digital document binding an entity’s **identity** (name, organization, domain, IP address, etc.) to its **public key**.
+   * The certificate itself is **digitally signed by the CA** using the CA’s private key.
+   * Anyone can verify the certificate using the CA’s public key.
+
+This solves the pizza prank:
+
+* Bob gets a certificate from a trusted CA binding his identity to his public key.
+* When Alice gets Bob’s certificate, she uses the CA’s public key to verify it.
+* If valid, Alice knows the key is truly Bob’s.
+
+---
+
+## 3. Certificate Structure (X.509)
+
+The most widely used certificate standard is **X.509**, defined by ITU and adopted by the IETF (e.g., \[RFC 5280]).
+
+### Important Fields (from Table 8.4 in the material):
+
+* **Version** – which version of X.509 is being used.
+* **Serial Number** – unique identifier issued by the CA for tracking/revocation.
+* **Signature Algorithm** – the algorithm the CA used to sign (e.g., RSA-SHA256).
+* **Issuer Name** – identity of the CA (Distinguished Name, DN).
+* **Validity Period** – start and expiration dates for certificate use.
+* **Subject Name** – identity of the certificate holder (person, server, router, etc.).
+* **Subject Public Key** – the entity’s public key + algorithm info.
+
+Side Note 💡: Certificates can contain extensions (e.g., constraints, usage flags, SAN = Subject Alternative Names). For example:
+
+* A web server certificate might bind `www.example.com` to its public key.
+* A CA can restrict a certificate so it can **only** be used for TLS, not code-signing.
+
+---
+
+## 4. Trust Chain: From Root to End-Entity
+
+Certificates rely on a **chain of trust**:
+
+1. **Root CA** – Self-signed, pre-installed in browsers/OS.
+2. **Intermediate CA(s)** – Subordinate to root, issue end-entity certificates.
+3. **End-Entity Certificate** – Belongs to the server, router, or user.
+
+When Alice connects to Bob’s server (say over HTTPS/TLS):
+
+* Bob sends his certificate chain (end-entity + intermediates).
+* Alice’s browser verifies the chain up to a trusted root CA in its store.
+* If chain verification succeeds, the public key in Bob’s certificate is trusted as truly Bob’s.
+
+Without this system, Trudy could simply invent her own key pair and trick Alice.
+
+---
+
+## 5. End-Point Authentication
+
+Now let’s connect certification to **end-point authentication**.
+End-point authentication = one entity proving its identity to another **live, during communication**.
+
+Examples:
+
+* A user authenticating to an email server.
+* A browser authenticating that `www.amazon.com` really belongs to Amazon.
+* Routers authenticating each other before exchanging routing info (OSPF, BGP with TLS).
+
+---
+
+### 5.1 The Evolution of Authentication Protocols (ap1.0 → ap4.0)
+
+Your material beautifully illustrates the weaknesses of naive approaches:
+
+1. **ap1.0 – “I am Alice”**
+
+   * Alice just sends her name.
+   * Trudy can impersonate by saying the same thing.
+
+2. **ap2.0 – IP Address Authentication**
+
+   * Authenticate based on source IP address.
+   * Flawed due to **IP spoofing** (easy to forge source addresses).
+
+3. **ap3.0 – Password Authentication**
+
+   * Alice sends “I am Alice, password”.
+   * Vulnerable: If sent in plaintext (Telnet, FTP), Trudy can sniff password.
+
+4. **ap3.1 – Encrypted Password Authentication**
+
+   * Encrypt password with symmetric key.
+   * Still vulnerable to **replay attacks**: Trudy replays Alice’s encrypted password later.
+
+5. **ap4.0 – Nonce-Based Challenge-Response**
+
+   * Bob sends Alice a **nonce** (random number used once).
+   * Alice encrypts the nonce with their shared key and sends back.
+   * Bob verifies the response.
+   * ✅ This proves Alice is **who she claims** and is **live** (because she had to respond to Bob’s challenge).
+
+This challenge-response with nonces is a **core pattern** used in real-world authentication protocols (e.g., Kerberos, TLS handshakes, RADIUS/EAP).
+
+---
+
+## 6. Putting It All Together
+
+* **Digital Signatures** ensure data integrity and authenticity, but only if the verifier has the correct public key.
+* **Public Key Certificates** bind a public key to an identity, solving the “pizza prank” problem.
+* **CAs** are trusted third parties that issue certificates, forming the basis of global trust (PKI).
+* **End-Point Authentication** builds on these foundations, using cryptographic protocols (nonces, signatures, certificates) to ensure that two parties know exactly who they are talking to.
+
+This combination is what enables **IPsec VPNs**, **TLS (HTTPS)**, **secure email (S/MIME, PGP)**, and secure routing protocols.
+
+---
+
+# ✅ Summary of Key Terms
+
+* **Public Key Certification** – The process of binding a public key to an identity.
+* **Certification Authority (CA)** – Trusted third party that verifies identity and issues signed certificates.
+* **X.509 Certificate** – Standard format containing subject identity, public key, issuer info, validity, etc.
+* **Chain of Trust** – Validation path from end-entity certificate up to a root CA.
+* **End-Point Authentication** – Process of proving identity in real time (often using nonces in challenge-response).
+* **Replay Attack** – Attack where old valid authentication messages are replayed. Prevented by using nonces.
+
+---
+
+👉 In our next lecture, it would be natural to continue with **how these authentication protocols are used in practice**, particularly in **TLS/SSL handshake** and **IPsec IKE negotiation**, since those are the flagship real-world applications of CAs, certificates, and end-point authentication.
+
+Would you like me to expand next into the **TLS handshake**, showing step-by-step how certificates and nonces work together to establish both authentication and secure keys?
