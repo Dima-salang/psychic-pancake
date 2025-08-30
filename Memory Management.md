@@ -1131,3 +1131,505 @@ If miss → DRAM
 ---
 
 Would you like me to **draw out a full memory hierarchy diagram with TLB included** so you can visually see where each part fits?
+
+
+
+
+Perfect — let’s go through **9.3.3 Protection** and **9.3.4 Shared Pages** as if I’m giving you a deep lecture. I’ll stay true to the material but expand with theoretical and practical insights, and relate it to how modern operating systems and hardware actually implement these features.
+
+---
+
+# **9.3.3 Protection in Paging Systems**
+
+### 🔹 Why Memory Protection Matters
+
+The moment we introduce **multiprogramming** and **virtual memory**, protection becomes essential. Multiple processes (and the kernel) coexist in memory. If one process could freely write to another’s memory, the entire system’s stability and security would collapse.
+
+Paging provides a **natural point of control**: every access goes through the **page table**, and the page table can enforce **protection**.
+
+---
+
+### 🔹 Protection Bits in Page Table Entries
+
+Each **page table entry (PTE)** does not just map a virtual page to a physical frame. It also stores **metadata** (protection bits):
+
+* **Read / Write Bit**
+
+  * `1` → page is writable
+  * `0` → page is read-only
+    Example: Program code is usually marked *read-only* so it cannot be accidentally (or maliciously) modified.
+
+* **Execute Bit**
+
+  * `1` → page can be executed (instruction fetch allowed)
+  * `0` → cannot execute from this page
+    Example: The *NX bit* (No-Execute) in modern x86 CPUs prevents data pages (like the stack) from being executed — blocking a whole class of exploits such as buffer overflow → code injection.
+
+* **Combinations**
+
+  * Read-only + Execute (for program text)
+  * Read-Write + No-Execute (for stack/heap)
+  * Read-Only + No-Execute (for read-only data tables)
+
+📌 Illegal access (e.g., trying to write to a read-only page) causes a **hardware trap** → the CPU raises a **protection fault** (a type of exception). The OS handles it, often terminating the process with a *segmentation fault (SIGSEGV in Unix/Linux)*.
+
+---
+
+### 🔹 Valid–Invalid Bit
+
+Every page table entry also has a **valid-invalid bit**:
+
+* **Valid** → this page is part of the process’s logical address space.
+* **Invalid** → this page does not belong to the process.
+
+If the CPU encounters an invalid page during translation:
+
+* It **traps to the OS** immediately (invalid memory reference).
+* This prevents one process from accessing memory outside its allocated space.
+
+✅ Example: Suppose we have a **14-bit virtual address space** (16,384 addresses). Page size = 2 KB (2048 addresses). That means:
+
+* **8 pages** total (0–7).
+* If program only uses addresses `0–10,468`, that covers pages **0–5**.
+* Pages **6 and 7** are marked **invalid**.
+* Any reference into those pages generates a trap.
+
+This protects against **out-of-bounds access**.
+
+---
+
+### 🔹 Problem: Page Granularity and Fragmentation
+
+But there’s a subtlety:
+
+* Program ends at **10,468**, which lies *inside* page 5 (which goes up to address **12,287**).
+* Page 5 is valid, so addresses `10,469–12,287` are technically “valid” in terms of mapping, even though they aren’t part of the program.
+
+This happens because protection is enforced at **page granularity**, not at the byte level.
+This introduces **internal fragmentation**: some valid addresses are technically unused and should not be touched — but they aren’t blocked by hardware.
+
+---
+
+### 🔹 Page Table Length Register (PTLR)
+
+Some architectures add extra hardware:
+
+* **Page Table Length Register (PTLR):** stores the size of the process’s page table.
+* On every memory reference, the CPU checks whether the **virtual page number** is < PTLR.
+* If it isn’t, the address is automatically invalid.
+
+This avoids having to fill unused PTEs with “invalid” entries and makes address-space enforcement stricter.
+
+---
+
+### ✅ Summary: Protection
+
+1. **Protection bits per page** control **Read/Write/Execute** permissions.
+2. **Valid/Invalid bit** enforces process boundaries.
+3. **PTLR** adds further protection by bounding the address space.
+4. Protection is at **page granularity**, leading to internal fragmentation.
+
+This is the foundation of **process isolation** in modern OSes.
+
+---
+
+# **9.3.4 Shared Pages**
+
+### 🔹 Why Sharing Matters
+
+If every process carried its own copy of large libraries (like the C standard library), memory would be wasted. With paging, we can **share physical pages** among processes without losing isolation.
+
+---
+
+### 🔹 Reentrant Code (a.k.a. Pure Code)
+
+The key to sharing code is that it must be **reentrant**:
+
+* **Non-self-modifying** (instructions never overwrite themselves).
+* Code is **read-only** → multiple processes can execute it simultaneously.
+* Each process has its **own data section** (stack/heap), but shares the same **text section** (instructions).
+
+📌 Example: `libc.so` (the C standard library)
+
+* If 40 processes each need 2 MB of `libc`: naïve → 80 MB memory usage.
+* With sharing: one 2 MB copy of `libc` in physical memory, mapped into all 40 processes’ address spaces.
+
+That’s **2 MB total**, not 80 MB — a massive saving.
+
+---
+
+### 🔹 How Sharing is Implemented
+
+* Each process has its own **page table**.
+* The OS sets the page table entries for the shared code pages to map to the **same physical frames**.
+* Example:
+
+  * Process P1’s page table: virtual page 4 → physical frame 100 (libc code)
+  * Process P2’s page table: virtual page 7 → physical frame 100 (same libc code)
+  * Both execute the *same physical code* but at different virtual addresses.
+
+---
+
+### 🔹 Practical Examples of Shared Pages
+
+* **System libraries (libc, GUI toolkits, compilers, etc.)**
+* **Shared memory IPC** (two processes map the same physical pages for communication).
+* **Kernel code**: often mapped into every process’s address space (with protection bits set so user-mode processes can’t modify it).
+
+---
+
+### 🔹 Protection with Shared Pages
+
+* Shared code must be **read-only + execute**.
+* If processes could write to shared code, one process could corrupt all others using the same library.
+* OS enforces this at the **page table protection level**.
+
+---
+
+### ✅ Summary: Shared Pages
+
+1. Paging allows processes to share physical memory efficiently.
+2. **Reentrant (pure) code** can be mapped into multiple processes’ address spaces.
+3. Saves significant memory, especially for common libraries.
+4. Still provides **isolation** since each process has private data pages.
+
+---
+
+# 🌍 Putting It All Together
+
+* **Protection (9.3.3)** ensures *isolation* and prevents illegal memory access.
+* **Shared Pages (9.3.4)** exploit the paging mechanism to *save memory* and *enable interprocess cooperation*.
+
+Paging isn’t just about mapping — it’s a **framework for protection, isolation, and efficient sharing**.
+
+---
+
+Would you like me to also go one step deeper and show you **how modern x86 and ARM CPUs implement these protection bits (R/W/X, NX bit, supervisor vs user mode)** so you can connect the theory here to real hardware?
+
+
+Perfect — let’s go deep into **Section 9.4: Structure of the Page Table** while sticking closely to the material, expanding on the technical reasoning behind each mechanism, and framing it in both the theoretical and practical perspectives.
+
+---
+
+# **9.4 Structure of the Page Table**
+
+The central challenge here is this:
+
+* The **page table** is the data structure that holds the mappings between **virtual pages** (from the process’s logical address space) and **physical frames** (in main memory).
+* With modern systems using **very large address spaces** (32-bit = 4 GB, 64-bit = up to exabytes), the page tables themselves can become **gigantic** and unmanageable if naïvely implemented.
+
+To address this, operating systems and hardware use specialized **page table structures** that balance **space efficiency** and **lookup speed**.
+
+We’ll examine **four major approaches**:
+
+1. **Hierarchical Paging**
+2. **Hashed Page Tables**
+3. **Inverted Page Tables**
+4. **Oracle SPARC Solaris Example**
+
+---
+
+## **9.4.1 Hierarchical Paging**
+
+### Problem:
+
+* In a **32-bit system** with 4 KB page size:
+
+  * Virtual address space = $2^{32} = 4 \text{ GB}$.
+  * Page size = $2^{12} = 4 \text{ KB}$.
+  * Number of pages = $2^{32-12} = 2^{20} = 1,048,576$.
+  * If each page table entry (PTE) is 4 bytes → **4 MB page table per process**.
+* That’s wasteful, especially since many processes only use a small fraction of their address space.
+
+### Solution: Two-Level Paging
+
+* Instead of one massive contiguous page table, **page the page table itself**.
+
+* A 32-bit logical address is split as:
+
+  $$
+  p_1 \;|\; p_2 \;|\; d
+  $$
+
+  * $p_1$: index into the **outer page table** (10 bits)
+  * $p_2$: index into the **inner page table** (10 bits)
+  * $d$: offset within the page (12 bits)
+
+* Translation process:
+
+  1. Use $p_1$ to find the correct inner page table.
+  2. Use $p_2$ to find the physical frame in that inner table.
+  3. Add $d$ to get the final **physical address**.
+
+This avoids having to allocate the full 4 MB page table; only the inner tables actually needed by the process are created.
+
+👉 This structure is called a **forward-mapped page table**.
+
+### Scaling to 64-bit:
+
+* With 64-bit addresses, the size of page tables explodes:
+
+  * A flat page table would require $2^{52}$ entries (with 4 KB pages).
+* Even a **two-level scheme** produces absurdly large tables (outer table \~16 GB).
+* Thus, deeper **multi-level paging** (3, 4, or even more levels) is used.
+
+  * x86-64, for example, uses a **four-level hierarchy** (PML4 → PDPT → Page Directory → Page Table).
+
+👉 But too many levels = multiple memory accesses per translation → mitigated with **TLBs**.
+
+---
+
+## **9.4.2 Hashed Page Tables**
+
+### Idea:
+
+* Useful for **large address spaces** (especially 64-bit).
+* Instead of traversing multi-level tables, we use a **hash function** on the virtual page number.
+
+### Structure:
+
+* Hash table entries contain a **linked list of mappings** (to handle collisions).
+* Each entry stores:
+
+  1. Virtual page number.
+  2. Physical frame number.
+  3. Pointer to next entry (if collision).
+
+### Lookup Process:
+
+1. Hash the virtual page number → get a bucket in the hash table.
+2. Traverse linked list for that bucket.
+3. If found, extract physical frame and add offset.
+4. If not found → page fault.
+
+👉 Advantage: lookup time can be $O(1)$ on average.
+👉 Especially good for **sparse address spaces** where only a few pages are mapped.
+
+### Clustered Hashed Page Tables:
+
+* Each entry can map **multiple contiguous pages** (e.g., 16 pages).
+* Reduces memory overhead and speeds lookup.
+* Very effective when virtual memory usage is **non-contiguous** and scattered.
+
+---
+
+## **9.4.3 Inverted Page Tables**
+
+### Problem with normal page tables:
+
+* One page table **per process**, potentially with millions of entries.
+* Wastes huge amounts of memory.
+
+### Solution: Inverted Page Table
+
+* Instead of **per-process tables**, maintain **one global table** with **one entry per physical frame**.
+* Each entry contains:
+
+  * Process ID (or address-space identifier).
+  * Virtual page number.
+  * (Optional) protection and status bits.
+
+👉 So table size = number of physical frames (much smaller).
+
+### Lookup Process:
+
+* On memory reference:
+
+  1. Take $\langle pid, page\_number \rangle$.
+  2. Search inverted page table for a match.
+  3. If found at entry $i$, physical address = $\langle i, offset \rangle$.
+  4. If not found → invalid reference or page fault.
+
+### Drawbacks:
+
+* Searching is slow (table indexed by physical frames, not virtual pages).
+* Needs **hashing** to speed up search.
+
+### Shared Memory Problem:
+
+* Standard paging: multiple processes’ page tables can map different virtual pages to the same physical frame.
+* Inverted paging: one entry per frame → only one mapping at a time.
+* To support shared memory, special tricks are needed (extra mappings, software-managed).
+
+👉 Used in systems like IBM’s RS/6000, UltraSPARC, and PowerPC.
+
+---
+
+## **9.4.4 Oracle SPARC Solaris (Practical Example)**
+
+Solaris with SPARC CPUs provides a **real-world optimized implementation**:
+
+* Uses **hashed page tables** (two: one for kernel, one for user processes).
+* Each entry covers a **contiguous span of pages**, not just one.
+
+### Translation Process:
+
+1. **CPU checks TLB** for a Translation Table Entry (TTE).
+
+   * If hit → translation is immediate.
+2. If miss:
+
+   * Hardware searches **Translation Storage Buffer (TSB)** → an in-memory cache of page table entries.
+   * If found, TSB entry copied into TLB.
+3. If not in TSB:
+
+   * Trap into **kernel**, which searches the hash table.
+   * Kernel creates a new TTE, loads it into TSB, then into TLB.
+
+👉 Efficient because:
+
+* Common lookups are cached in TLB.
+* Less common ones are cached in TSB.
+* Only rare misses involve kernel hash-table searches.
+
+This layering (TLB → TSB → kernel) balances **fast average-case performance** with **scalability to 64-bit spaces**.
+
+---
+
+# ✅ Key Takeaways
+
+* **Hierarchical Paging:** Breaks huge page tables into multiple levels. Used in x86/x86-64. Efficient but adds multiple memory references per lookup (mitigated by TLBs).
+* **Hashed Page Tables:** Use hashing for large/sparse address spaces. Efficient average-case lookups; clustered variation stores multiple mappings per entry.
+* **Inverted Page Tables:** One entry per physical frame (system-wide). Saves space but complicates lookup and shared memory. Used in IBM/PowerPC/UltraSPARC.
+* **Solaris SPARC Example:** Hybrid approach with hashed page tables + TLB + TSB to achieve scalable and efficient 64-bit virtual memory management.
+
+---
+
+Would you like me to also **draw out a step-by-step comparison** of how address translation happens in each scheme (hierarchical, hashed, inverted), so you can see their differences side by side in terms of performance and memory efficiency?
+
+
+Great — let’s dive into **Section 9.5: Swapping**, and I’ll teach this as if I’m guiding you in both a systems design class and a real-world OS engineering workshop.
+
+---
+
+# **9.5 Swapping**
+
+Swapping is a **memory-management technique** where processes (or portions of them) are **moved temporarily out of main memory into a backing store** (usually disk) and later brought back in for execution.
+
+This allows a system to **run more processes than physical memory alone would allow**, thereby increasing **multiprogramming** and overall system utilization.
+
+Let’s go step by step.
+
+---
+
+## **9.5.1 Standard Swapping**
+
+### **Concept**
+
+* Entire processes are swapped **out of RAM** → placed in a **backing store** (secondary storage, often disk).
+* When needed, the process is **swapped back in** to memory.
+
+### **Backing Store**
+
+* Must be:
+
+  * **Fast** (so swapping overhead doesn’t dominate).
+  * **Large enough** to hold swapped-out processes.
+  * **Directly accessible** (random access), not just sequential.
+
+### **Mechanics**
+
+1. The OS chooses an idle/low-priority process.
+2. Writes the process’s memory image (instructions, data, and per-thread structures if multithreaded) to disk.
+3. Frees up main memory for another process.
+4. Later, if the process is scheduled to run, the OS **swaps it back into memory** and restores metadata.
+
+### **Advantages**
+
+* Physical memory can be **oversubscribed** (more active processes than RAM can hold).
+* Great for multiprogramming — keeps CPUs busy.
+
+### **Disadvantages**
+
+* **Expensive**: moving an *entire process* to disk can take **hundreds of milliseconds**.
+* Large latency → not suitable for modern interactive workloads.
+* Used only in **early UNIX** and still present in some systems (e.g., Solaris) but only as a **last resort**.
+
+---
+
+## **9.5.2 Swapping with Paging (Modern Approach)**
+
+Modern OSs (Linux, Windows, etc.) rarely move whole processes. Instead, they **swap at the page level** (sometimes called *paging*).
+
+### **Key Idea**
+
+* Instead of moving the entire process, the OS only moves **individual pages** (usually 4 KB each).
+* More efficient because only a **small working set** of a process is usually active.
+
+### **Operations**
+
+* **Page out** → copy a page from memory to the backing store.
+* **Page in** → bring the page back into memory when needed.
+
+### **Advantages**
+
+* Far more efficient than standard swapping.
+* Allows the system to oversubscribe memory while minimizing disk I/O.
+
+### **Important Note**
+
+* Nowadays, when people say **"swapping"**, they usually mean **page-level swapping**.
+* The old sense (entire-process swapping) is largely obsolete.
+
+---
+
+## **9.5.3 Swapping on Mobile Systems**
+
+Mobile systems (iOS, Android) handle memory differently because of **hardware constraints**:
+
+* **No traditional swapping**:
+
+  * Storage is usually **flash memory** (smaller and slower than disks, and has limited write cycles).
+  * Continuous swapping would wear out flash and kill performance.
+
+### **iOS Strategy**
+
+* When free memory is low:
+
+  * Asks apps to **voluntarily free memory**.
+  * Read-only segments (e.g., code) are simply **discarded** → reloaded later if needed.
+  * Modified data (like the stack) is **never swapped out**.
+  * If app cannot release memory → OS **terminates the app**.
+
+### **Android Strategy**
+
+* Similar approach:
+
+  * If memory pressure is too high → **kill processes**.
+  * Before killing, Android saves **application state** to flash.
+  * On restart, the app can restore quickly.
+
+### **Implication for Developers**
+
+* Mobile devs must:
+
+  * Avoid **memory leaks**.
+  * Release unused memory aggressively.
+  * Expect that their app may be killed and restarted frequently.
+
+---
+
+## **System Performance Under Swapping**
+
+Even with paging, heavy swapping is a **warning sign**:
+
+* Indicates the system has **more active processes than physical memory can handle**.
+* Known as **thrashing** if it gets severe (we’ll discuss later in Virtual Memory).
+
+**Solutions:**
+
+1. **Kill processes** (OS does this on mobile; admins may do it on servers).
+2. **Add more RAM** (the ultimate fix).
+
+---
+
+✅ **Summary to Remember**
+
+* **Standard swapping**: whole processes → disk (obsolete, except in rare cases).
+* **Swapping with paging**: move only pages, efficient, what modern OSs do.
+* **Mobile devices**: no swapping; use app termination and state-saving strategies.
+* **Swapping is a symptom of memory pressure**: performance will degrade; more RAM is often the only long-term fix.
+
+---
+
+Would you like me to now move on to **Section 9.6 (Intel 32- and 64-bit Architectures)** with the same level of detail and professor-style teaching?
