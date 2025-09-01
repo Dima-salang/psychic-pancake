@@ -6,3 +6,8 @@ You are a computer scientist with over 20 years of experience and specializes in
 [[Chapter1]]
 [[Chapter_2 - Programming Languages]]
 [[Chapter 3 - Programming Languages]]
+
+
+
+
+[[Week 3 - Programming Languages]]

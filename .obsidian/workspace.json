@@ -27,12 +27,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Operating Systems/Operating Systems.md",
+                "file": "Notion/College Management/Senior Courses/Principles of Programming Languages/Programming Languages.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Operating Systems"
+              "title": "Programming Languages"
+            }
+          },
+          {
+            "id": "8383e8ca735dd2cd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Notion/College Management/Senior Courses/Principles of Programming Languages/Week 3 - Programming Languages.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Week 3 - Programming Languages"
             }
           },
           {
@@ -106,7 +120,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -163,7 +177,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "07d0247339a5e8b4",
@@ -267,14 +282,15 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "bd22bc4536486d75",
+  "active": "8383e8ca735dd2cd",
   "lastOpenFiles": [
-    "Notion/College Management/Senior Courses/Principles of Programming Languages/Chapter 3 - Programming Languages.md",
+    "Notion/College Management/Senior Courses/Principles of Programming Languages/Week 3 - Programming Languages.md",
     "Notion/College Management/Senior Courses/Principles of Programming Languages/Programming Languages.md",
+    "Notion/College Management/Senior Courses/Operating Systems/Operating Systems.md",
+    "Notion/College Management/Senior Courses/Operating Systems/Virtual Memory - OS Dino.md",
+    "Notion/College Management/Senior Courses/Principles of Programming Languages/Chapter 3 - Programming Languages.md",
     "Notion/College Management/Senior Courses/Principles of Programming Languages/Chapter_2 - Programming Languages.md",
     "Chapter1.md",
-    "Notion/College Management/Senior Courses/Operating Systems/Virtual Memory - OS Dino.md",
-    "Notion/College Management/Senior Courses/Operating Systems/Operating Systems.md",
     "Notion/College Management/Extra Activities/COMPUTER SYSTEMS- A PROGRAMMER’S PERSPECTIVE/Virtual Memory.md",
     "Memory Management.md",
     "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Introduction/Networking Layer.md",
@@ -297,7 +313,6 @@
     "Notion/College Management/Senior Courses/Advanced Computer Networking",
     "Notion/College Management/Senior Courses/Quantitative Methods/Introduction to Statistics.md",
     "Notion/College Management/Senior Courses/Quantitative Methods/Presentation of Data.md",
-    "Notion/College Management/Senior Courses/Quantitative Methods/MAPUA QUANTITATIVE METHODS.md",
     "Notion/College Management/Senior Courses/Quantitative Methods",
     "Notion/College Management/Senior Courses/Research Methods in CS",
     "Notion/College Management/Sophomore Courses/Untitled.base",
