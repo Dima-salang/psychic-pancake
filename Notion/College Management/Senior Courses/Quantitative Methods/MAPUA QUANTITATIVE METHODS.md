@@ -29,3 +29,8 @@ When explaining, **maintain the original definitions and terms** from the materi
 [[Non-Probability Graphs]]
 [[Measures of Describing Data]]
 [[Measures of Central TEndency]]
+[[Measures of Dispersion]]
+[[Measures of Shape]]
+[[Normal Distribution]]
+[[Inferential Statistics]]
+[[Confidence Intervals]]

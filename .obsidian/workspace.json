@@ -27,72 +27,86 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Research Methods in CS/Research Methods in CS.md",
+                "file": "Notion/College Management/Senior Courses/Quantitative Methods/MAPUA QUANTITATIVE METHODS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Research Methods in CS"
+              "title": "MAPUA QUANTITATIVE METHODS"
             }
           },
           {
-            "id": "743e0450af9f4b90",
+            "id": "4e8430e40dc8e813",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Quantitative Methods/Measures of Central TEndency.md",
+                "file": "Notion/College Management/Senior Courses/Quantitative Methods/MAPUA QUANTITATIVE METHODS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Measures of Central TEndency"
+              "title": "MAPUA QUANTITATIVE METHODS"
             }
           },
           {
-            "id": "ede152124a3b078b",
+            "id": "29bf2f1d8b9a6322",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Quantitative Methods/Measures of Describing Data.md",
+                "file": "Notion/College Management/Senior Courses/Quantitative Methods/Confidence Intervals.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Measures of Describing Data"
+              "title": "Confidence Intervals"
             }
           },
           {
-            "id": "2f6b038e02af03e9",
+            "id": "6393c10303f18c5b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Quantitative Methods/Non-Probability Graphs.md",
+                "file": "Notion/College Management/Senior Courses/Quantitative Methods/Inferential Statistics.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Non-Probability Graphs"
+              "title": "Inferential Statistics"
             }
           },
           {
-            "id": "0226f558f515aff9",
+            "id": "0858a7eaad35c904",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Advanced Computer Networking/Routing Concepts.md",
+                "file": "Notion/College Management/Senior Courses/Quantitative Methods/Normal Distribution.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Routing Concepts"
+              "title": "Normal Distribution"
+            }
+          },
+          {
+            "id": "09a116256fd7bd73",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Notion/College Management/Senior Courses/Quantitative Methods/Measures of Dispersion.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Measures of Dispersion"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -253,9 +267,14 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "743e0450af9f4b90",
+  "active": "cdbfeea6482b4413",
   "lastOpenFiles": [
+    "Notion/College Management/Senior Courses/Quantitative Methods/Confidence Intervals.md",
     "Notion/College Management/Senior Courses/Quantitative Methods/MAPUA QUANTITATIVE METHODS.md",
+    "Notion/College Management/Senior Courses/Quantitative Methods/Inferential Statistics.md",
+    "Notion/College Management/Senior Courses/Quantitative Methods/Normal Distribution.md",
+    "Notion/College Management/Senior Courses/Quantitative Methods/Measures of Shape.md",
+    "Notion/College Management/Senior Courses/Quantitative Methods/Measures of Dispersion.md",
     "Notion/College Management/Senior Courses/Quantitative Methods/Measures of Central TEndency.md",
     "Notion/College Management/Senior Courses/Quantitative Methods/Measures of Describing Data.md",
     "Notion/College Management/Senior Courses/Quantitative Methods/Non-Probability Graphs.md",
@@ -276,11 +295,6 @@
     "Notion/College Management/Senior Courses/Principles of Programming Languages/Week 3 - Programming Languages.md",
     "Notion/College Management/Senior Courses/Principles of Programming Languages/Chapter 3 - Programming Languages.md",
     "Notion/College Management/Senior Courses/Principles of Programming Languages/Chapter_2 - Programming Languages.md",
-    "Chapter1.md",
-    "Notion/College Management/Extra Activities/COMPUTER SYSTEMS- A PROGRAMMER’S PERSPECTIVE/Virtual Memory.md",
-    "Memory Management.md",
-    "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Introduction/Networking Layer.md",
-    "Notion/College Management/Extra Activities/Computer Networking- A Top-Down Approach/Notes/Introduction/Security.md",
     "Notion/College Management/Senior Courses/Purposive Communication",
     "Wireless Networking ",
     "Notion/College Management/Senior Courses/Advanced Computer Networking",
