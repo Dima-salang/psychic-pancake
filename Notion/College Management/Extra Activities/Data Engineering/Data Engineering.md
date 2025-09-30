@@ -1,3 +1,6 @@
 [[Data Engineering Roadmap]]
+[[Data Engineering Defined]]
+[[Data Engineering Lifecycle]]
+[[Data Source Generation]]
 [[Storage and File Formats]]
 [[ETL and ELT]]
