@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "09f8e0884edf3f27",
+            "id": "4139aef53976c135",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -22,77 +22,49 @@
             }
           },
           {
-            "id": "09024dd489048e44",
+            "id": "aae63f7132c45829",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Quantitative Methods/MAPUA QUANTITATIVE METHODS.md",
+                "file": "Notion/Artificial Intelligence/Artificial Intelligence.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "MAPUA QUANTITATIVE METHODS"
+              "title": "Artificial Intelligence"
             }
           },
           {
-            "id": "4e8430e40dc8e813",
+            "id": "fa7b35b79aad313c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Quantitative Methods/MAPUA QUANTITATIVE METHODS.md",
+                "file": "Notion/Artificial Intelligence/Classical AI/Classical AI.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "MAPUA QUANTITATIVE METHODS"
+              "title": "Classical AI"
             }
           },
           {
-            "id": "29bf2f1d8b9a6322",
+            "id": "8d26ee83d9b2205d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Operating Systems/Operating Systems.md",
+                "file": "Notion/Artificial Intelligence/Classical AI/Problem-Solving.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Operating Systems"
+              "title": "Problem-Solving"
             }
           },
           {
-            "id": "e42a4fc3037cea7c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Notion/College Management/Senior Courses/Operating Systems/Mass-Storage.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Mass-Storage"
-            }
-          },
-          {
-            "id": "9e94ef1ffb00a664",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Notion/College Management/Senior Courses/Operating Systems/Operating Systems.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Operating Systems"
-            }
-          },
-          {
-            "id": "cae80e4d6930529b",
+            "id": "9d156ca5df3fab2d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -106,105 +78,21 @@
             }
           },
           {
-            "id": "7c9538381eed299c",
+            "id": "ede886f1a53da8bb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notion/College Management/Senior Courses/Research Methods in CS/Research Methods in CS.md",
+                "file": "Notion/College Management/Senior Courses/Operating Systems/File Systems Overview.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Research Methods in CS"
-            }
-          },
-          {
-            "id": "5fe30a1ef6414a45",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Notion/College Management/Senior Courses/Research Methods in CS/Research.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Research"
-            }
-          },
-          {
-            "id": "19f41543783626cf",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Notion/College Management/Extra Activities/Data Engineering/Data Source Generation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Data Source Generation"
-            }
-          },
-          {
-            "id": "c3d4538780607ee1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Notion/College Management/Senior Courses/Operating Systems/Operating Systems.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Operating Systems"
-            }
-          },
-          {
-            "id": "4139aef53976c135",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Notion/College Management/Extra Activities/Data Engineering/Data Engineering.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Data Engineering"
-            }
-          },
-          {
-            "id": "ca5f492c3a8c253e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Notion/College Management/Extra Activities/Data Engineering/Data Storage.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Data Storage"
-            }
-          },
-          {
-            "id": "4e4b28b01c802b26",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Operations on Processes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Operations on Processes"
+              "title": "File Systems Overview"
             }
           }
         ],
-        "currentTab": 12
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -350,8 +238,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 297.5,
-    "collapsed": true
+    "width": 297.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -367,14 +254,22 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "ca5f492c3a8c253e",
+  "active": "8d26ee83d9b2205d",
   "lastOpenFiles": [
-    "Notion/College Management/Extra Activities/Data Engineering/Data Storage.md",
-    "Notion/College Management/Extra Activities/Data Engineering/Data Engineering.md",
-    "Notion/College Management/Senior Courses/Operating Systems/File Systems Overview.md",
+    "Notion/Artificial Intelligence/Classical AI/Problem-Solving.md",
+    "Notion/Artificial Intelligence/Classical AI/Classical AI.md",
+    "Notion/Artificial Intelligence/Artificial Intelligence.md",
+    "Notion/College Management/Senior Courses/Operating Systems/File System Implementations.md",
     "Notion/College Management/Senior Courses/Operating Systems/Operating Systems.md",
-    "Notion/College Management/Extra Activities/Data Engineering/Data Source Generation.md",
+    "Notion/College Management/Senior Courses/Operating Systems/File Systems Overview.md",
     "Notion/College Management/Senior Courses/Operating Systems/File System.md",
+    "Notion/College Management/Extra Activities/Data Engineering/Data Storage.md",
+    "Notion/Artificial Intelligence/Classical AI/MAPUA AI Assessments/MAPUA AI Assessments.md",
+    "Notion/Artificial Intelligence/Classical AI/Knowledge Representation and Reasoning/Knowledge Representation and Reasoning.md",
+    "Notion/Artificial Intelligence/Classical AI/Knowledge Representation Techniques/Knowledge Representation Techniques.md",
+    "Notion/Artificial Intelligence/Deep Learning Study/Deep Learning Study.md",
+    "Notion/College Management/Extra Activities/Data Engineering/Data Engineering.md",
+    "Notion/College Management/Extra Activities/Data Engineering/Data Source Generation.md",
     "Notion/College Management/Senior Courses/Principles of Programming Languages/Programming Languages.md",
     "Notion/College Management/Senior Courses/Principles of Programming Languages/Week 5 - ProgLang.md",
     "Notion/College Management/Senior Courses/Principles of Programming Languages/Week 4 - ProgLang.md",
@@ -387,14 +282,6 @@
     "Notion/College Management/Senior Courses/Operating Systems/Operating Systems/Operating Systems.md",
     "Interprocess Communication.md",
     "Notion/College Management/Extra Activities/Data Engineering/Data Engineering Roadmap.md",
-    "Notion/College Management/Senior Courses/Operating Systems/Storage Management.md",
-    "Notion/College Management/Senior Courses/Operating Systems/Kernel IO Subsystem.md",
-    "Notion/College Management/Extra Activities/Data Engineering/Data Engineering Defined.md",
-    "Notion/College Management/Extra Activities/Data Engineering/Data Engineering Lifecycle.md",
-    "Notion/College Management/Senior Courses/Research Methods in CS/Research.md",
-    "Notion/College Management/Senior Courses/Research Methods in CS/FA1.2-Summary.md",
-    "Notion/College Management/Senior Courses/Research Methods in CS/Research Methods in CS.md",
-    "Notion/College Management/Senior Courses/Operating Systems/Input-Output Subsystem.md",
     "I",
     "Notion/College Management/Extra Activities/Data Engineering",
     "Notion/College Management/Senior Courses/Purposive Communication",
