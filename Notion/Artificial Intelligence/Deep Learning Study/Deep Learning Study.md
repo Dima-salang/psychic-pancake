@@ -19,8 +19,10 @@
 [[Adam]]
 [[Learning Rate Decay]]
 [[Local Optima]]
+[[Softmax, Argmax, Cross-Entropy]]
+
 
 
 
 [[Convolutional Networks]]
-
+[[Recurrent Neural Networks]]
