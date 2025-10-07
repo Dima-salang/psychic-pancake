@@ -34,3 +34,4 @@ When explaining, **maintain the original definitions and terms** from the materi
 [[Normal Distribution]]
 [[Inferential Statistics]]
 [[Confidence Intervals]]
+[[Probability Distribution]]
