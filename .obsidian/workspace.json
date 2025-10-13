@@ -238,8 +238,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 297.5,
-    "collapsed": true
+    "width": 297.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -255,7 +254,7 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "079b98085c18c672",
+  "active": "cdbfeea6482b4413",
   "lastOpenFiles": [
     "Notion/Artificial Intelligence/Deep Learning Study/Seq2Seq and Encoder-Decoders.md",
     "Notion/Artificial Intelligence/Deep Learning Study/Recurrent Neural Networks.md",
