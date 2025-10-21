@@ -35,3 +35,7 @@ When explaining, **maintain the original definitions and terms** from the materi
 [[Inferential Statistics]]
 [[Confidence Intervals]]
 [[Probability Distribution]]
+
+
+
+[[Quantitative Methods Coursera]]

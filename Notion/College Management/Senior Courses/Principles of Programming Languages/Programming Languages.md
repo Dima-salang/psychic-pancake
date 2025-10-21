@@ -15,3 +15,6 @@ You are a computer scientist with over 20 years of experience and specializes in
 
 
 [[Dragon Book]]
+
+[[Crafting Interpreters]]
+[[Transpilers and JIT]]
