@@ -18,3 +18,5 @@ You are a computer scientist with over 20 years of experience and specializes in
 
 [[Crafting Interpreters]]
 [[Transpilers and JIT]]
+
+[[Coursera - Programming Languages]]
