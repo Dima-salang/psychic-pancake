@@ -14,6 +14,9 @@ Term: Freshman First Term
 
 [[Deep Learning Study]]
 
+[[Reinforcement Learning]]
+
+
   
 
 [[Classical AI]]

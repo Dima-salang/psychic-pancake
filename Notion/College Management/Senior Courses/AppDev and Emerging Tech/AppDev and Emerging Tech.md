@@ -7,4 +7,5 @@
 [[AppDev Week 7]]
 [[AppDev Week 8]]
 
+[[AppDev Proposals]]
 
