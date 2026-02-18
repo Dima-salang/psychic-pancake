@@ -8,3 +8,5 @@
 [[Guide to Sec+ Network Sec - Module 8]]
 [[Guide to Sec+ Network Sec - Module 9]]
 [[Guide to Sec+ Network Sec - Module 10]]
+[[Guide to Sec+ Network Sec - Module 11]]
+[[Guide to Sec+ Network Sec - Module 12]]
