@@ -5,3 +5,4 @@
 [[Ethics in IT - Chap8 - Impact on Society]]
 [[Ethics in IT - Chap3]]
 [[Ethics in IT - Chap7]]
+[[Ethics in IT - Chap2]]
